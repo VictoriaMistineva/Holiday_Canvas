@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-Light.woff2') format('woff2'),
+         url('SBSansText-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-Italic.woff2') format('woff2'),
+         url('SBSansText-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-SemiboldItalic.woff2') format('woff2'),
+         url('SBSansText-SemiboldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-Thin.woff2') format('woff2'), url('SBSansText-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-Regular.woff2') format('woff2'),
+         url('SBSansText-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-Semibold.woff2') format('woff2'),
+         url('SBSansText-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-LightItalic.woff2') format('woff2'),
+         url('SBSansText-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-Heavy.woff2') format('woff2'),
+         url('SBSansText-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-Bold.woff2') format('woff2'),
+         url('SBSansText-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-BoldItalic.woff2') format('woff2'),
+         url('SBSansText-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SB Sans Text';
+    src: url('SBSansText-Medium.woff2') format('woff2'),
+         url('SBSansText-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
