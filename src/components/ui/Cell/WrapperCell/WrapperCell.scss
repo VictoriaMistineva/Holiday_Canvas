@@ -1,0 +1,65 @@
+@import '../../../../assets/styles/mixins.scss';
+
+.wrapperCell {
+  width: 347px;
+  background: rgba(8, 8, 8, 0.30);
+  border-radius: 25px;
+  padding: 11px 7px 20px;
+
+  @include mq("md") {
+    width: calc(100% - 14px);
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_withTitleMargin {
+      margin-left: 15px;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__headerTitle {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.019em;
+  }
+
+  &__headerDescription {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.022em;
+    color: rgba(255, 255, 255, 0.56);
+  }
+
+
+  &__headerMicrofonWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(122, 122, 122, 0.28);
+    border-radius: 50%;
+
+
+    @include mq("md") {
+      background: var(--semi-postcard-color);
+    }
+  }
+
+  &__headerMicrofon {
+    --plasma-colors-primary: rgba(255, 255, 255, 0.96);
+  }
+}

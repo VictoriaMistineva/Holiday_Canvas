@@ -1,0 +1,20 @@
+@import '../../../assets/styles/mixins.scss';
+
+.search {
+  font: 500 14px/20px 'SB Sans Text', sans-serif;
+  width: 360px;
+  padding: 22px 20px;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  caret-color: rgb(0, 200, 0);
+
+  @include mq("md") {
+    padding: 16px 16px;
+    // padding: 25px 16px 10px;
+    width: calc(100% - 32px);
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+}

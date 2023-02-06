@@ -1,0 +1,35 @@
+@import '../../../assets/styles/mixins.scss';
+
+
+.textarea {
+  --textarea-width: 100%;
+
+  resize: none;
+  width: calc(var(--textarea-width) - 36px);
+  color: #fff;
+  max-height: 200px;
+  padding: 19px 18px;
+  caret-color: rgb(0, 200, 0);
+  background: rgba(122, 122, 122, 0.15);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  border: none !important;
+  outline: none;
+  overflow: hidden;
+
+  font-family: 'SB Sans Text';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: -0.022em;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include mq("md") {
+    max-height: 80px;
+  }
+}

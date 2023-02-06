@@ -1,0 +1,86 @@
+@import '../../../../assets/styles/mixins.scss';
+
+.SingleCellCircleMic {
+  width: calc(361px - 60px);
+  display: flex;
+  align-items: center;
+  padding: 6px 30px 6px 30px;
+  background:  rgba(8, 8, 8, 0.28);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 25px;
+  margin-bottom: 8px;
+  cursor: pointer;
+
+  @include mq("md") {
+    width: calc(100% - 60px);
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &__picture {
+    width: 36px;
+    height: 36px;
+    margin-right: 20px;
+  }
+
+  &__contentWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.022em;
+  }
+
+  &__changeDescription {
+    //display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 600 14px/28px 'SB Sans Text', sans-serif;
+    color: var(--semi-postcard-color);
+  }
+
+  &__description {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 25px;
+    letter-spacing: -0.022em;
+
+    color: var(--plasma-colors-primary);
+  }
+
+  &__headerMicrofonWrapper {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: -15px;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(122, 122, 122, 0.28);
+    border-radius: 50%;
+
+
+    @include mq("md") {
+      background: var(--semi-postcard-color);
+    }
+  }
+
+  &__headerMicrofon {
+    --plasma-colors-primary: rgba(255, 255, 255, 0.96);
+  }
+
+}
+
+

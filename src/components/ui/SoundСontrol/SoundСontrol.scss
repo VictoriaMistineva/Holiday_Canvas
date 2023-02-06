@@ -1,0 +1,47 @@
+@import '../../../assets/styles/mixins.scss';
+
+
+.soundСontrol {
+  position: absolute;
+  left: 38px;
+  bottom: 140px;
+  padding: 26px 20px;
+  background: linear-gradient(144.3deg, #232323 17.94%, #1F1D1D 96.45%);
+  box-shadow: 0 4px 19px rgba(0, 0, 0, 0.17);
+  border-radius: 18px;
+
+  @include mq("md") {
+    z-index: 1;
+    left: auto;
+    bottom: auto;
+    top: 30px;
+    right: 20px;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &__icon {
+    --plasma-colors-primary: grey;
+
+    display: block !important;
+    width: 24px;
+    height: 24px;
+    margin-bottom: 34px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    @include mq("md") {
+      display: inline-block !important;
+      margin-bottom: 0;
+      margin-right: 6px;
+      --plasma-colors-primary: grey;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}

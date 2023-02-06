@@ -1,0 +1,34 @@
+@import '../../../assets/styles/mixins.scss';
+
+.carusel {
+  display: flex;
+  width: 160px;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+
+  @include mq("md") {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+  }
+
+  &__slid {
+    flex: 0 0 160px;
+    color: #fff;
+    width: 160px;
+    height: 310px;
+
+    @include mq("md") {
+      flex: 0 0 100vw;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    & > img {
+      object-fit: cover;
+    }
+  }
+}

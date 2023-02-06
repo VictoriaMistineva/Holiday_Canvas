@@ -1,0 +1,36 @@
+
+
+.multipleCell {
+  &__card {
+    display: flex;
+    flex: 0 0 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 0 16px;
+    margin-bottom: 1px;
+    transition: background-color 0.3s ease-in-out;
+    color: #fff;
+
+    &:hover {
+      --plasma-colors-primary: #fff;
+
+      background-color: rgba(122, 122, 122, 0.15);
+      border-radius: 10px;
+    }
+  }
+
+  &__cardTitle {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    letter-spacing: -0.022em;
+  }
+
+  &__arroyIcon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}

@@ -1,0 +1,33 @@
+
+.choosePostcard {
+  &__title {
+    font: 600 20px/28px 'SB Sans Text', sans-serif;
+    letter-spacing: -0.022em;
+    margin-bottom: 18px;
+  }
+
+  &__radioButtonWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__radioButton {
+    margin-bottom: 20px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__button {
+    margin-top: 23px;
+    text-align: center;
+    padding: 14px 0;
+    font: 600 16px/20px 'SB Sans Text', sans-serif;
+    color: rgba(255, 255, 255, 0.96);
+    width: 100%;
+    background: linear-gradient(93.97deg, #1DD13B 6.49%, #27C6E5 93.51%);
+    border-radius: 12px;
+    cursor: pointer;
+  }
+}

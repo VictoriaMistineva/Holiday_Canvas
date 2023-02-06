@@ -1,0 +1,269 @@
+@import '../../assets/styles/mixins.scss';
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 455px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(1, 182, 255, 0) 50%), #080808;
+  border-radius: 20px;
+  color: #fff;
+  overflow: hidden;
+  padding: 42px 0 27px;
+
+  @include mq("md") {
+    width: calc(100% - 57px);
+    background: #080808;
+    height: calc(100vh - 165px);
+    border-radius: 0;
+    padding: 25px 27px 131px;
+  }
+
+  &__microfonWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 92px;
+    width: 40px;
+    height: 40px;
+    background: rgba(122, 122, 122, 0.28);
+    border-radius: 50%;
+  }
+
+  &__microfon {
+    --plasma-colors-primary: rgba(255, 255, 255, 0.96);
+  }
+
+  &__title {
+    text-align: center;
+    margin-bottom: 22px;
+    color: #fff;
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.025em;
+  }
+
+  &__textarea {
+    --textarea-width: 335px
+  }
+
+  &__textareaWarning {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.0125em;
+    margin-top: 15px;
+    margin-left: 60px;
+    align-self: flex-start;
+    color: rgba(255, 255, 255, 0.28);
+  }
+
+  &__cards {
+    width: calc(100% - 48px);
+    max-height: 390px;
+    overflow-y: auto;
+
+    @include mq("md") {
+      max-height: none;
+      width: 100%;
+      padding-right: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+    }
+
+    &_search {
+      min-height: 390px;
+
+      @include mq("md") {
+        height: calc(100vh - 165px - 56px - 68px - 108px);
+        min-height: 198px;
+      }
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 66px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+    padding-left: 18px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 90%;
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.15);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &:last-of-type {
+      &:after {
+        display: none;
+      }
+    }
+
+    &_active {
+      background-color: rgba(255, 255, 255, 0.17);
+      &:after {
+        display: none;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.17);
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  &__cardImage {
+    margin-right: 15px;
+
+    &_circle {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border-radius: 50%;
+      background: linear-gradient(93.97deg, #1DD13B 6.49%, #27C6E5 93.51%);
+    }
+
+    &_user {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+    }
+  }
+
+  &__cardTitle {
+    color: #fff;
+
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 28px;
+    letter-spacing: -0.022em;
+
+    &_entered {
+      color: #5993FF;
+    }
+  }
+
+
+  &__cardDescription {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 20px;
+    letter-spacing: -0.019em;
+    color: rgba(196, 196, 196, 0.63);
+    text-align: start;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__cardArrow {
+    margin-left: auto;
+    flex: 0 0 15px !important;
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  &__buttonWrapper {
+    margin-top: 27px;
+
+    @include mq("md") {
+      position: relative;
+      margin-top: auto;
+      width: 100%;
+      padding: 0 27px;
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        background: linear-gradient(180deg, rgba(8, 8, 8, 0) 0%, #080808 100%);
+        opacity: 0.5;
+        width: 100%;
+        height: 132px;
+        left: 0;
+        top: 0;
+        transform: translateY(-100%);
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 343px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    margin-bottom: 12px;
+    cursor: pointer;
+
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
+
+    &_green {
+      background: linear-gradient(93.97deg, #1DD13B 6.49%, #27C6E5 93.51%);
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  @include mq("md") {
+
+    @include mq("md") {
+
+    }
+
+    &__button {
+      width: 100%;
+    }
+
+    &__cardTitle {
+      font: 500 13px/20px 'SB Sans Text', sans-serif;
+      letter-spacing: -0.019em;
+      color: rgba(255, 255, 255, 0.96);
+    }
+
+    &__cardDescription {
+      font: 500 11px/20px 'SB Sans Text', sans-serif;
+      letter-spacing: -0.019em;
+      color: rgba(196, 196, 196, 0.63);
+    }
+
+    &__title {
+      font: 600 18px/25px 'SB Sans Text', sans-serif;
+      letter-spacing: -0.022em;
+      color: #FFFFFF;
+      margin-bottom: 31px;
+    }
+  }
+}

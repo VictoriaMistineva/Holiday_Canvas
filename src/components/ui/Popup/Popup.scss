@@ -1,0 +1,87 @@
+@import '../../../assets/styles/mixins.scss';
+
+.popup {
+  $self: &;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  text-align: center;
+  background: rgba(8, 8, 8, 0.9);
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  &__overflow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: var(--black-900);
+    opacity: 0.48;
+  }
+
+  &__container {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    background-color: var(--white);
+    border-radius: 20px;
+
+    &_left {
+      transform: translateX(-65%);
+    }
+
+    &_right {
+      transform: translateX(65%);
+    }
+  }
+
+  &__content {
+    height: 100%;
+  }
+
+  &_full {
+    display: block;
+
+    #{$self}__container {
+      width: 100%;
+    }
+  }
+
+  @include mq("md") {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: -100%;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    text-align: center;
+    background: rgba(8, 8, 8, 1);
+
+    &__overflow {
+      display: none;
+    }
+
+    &__container_left {
+      transform: none;
+      width: 100%;
+      border-radius: 25%;
+    }
+  }
+}

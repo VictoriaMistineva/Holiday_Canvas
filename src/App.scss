@@ -1,0 +1,174 @@
+@import './assets/styles/mixins.scss';
+
+* {
+  -webkit-tap-highlight-color: transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #272727;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(74, 74, 74, 0.79);;
+    border-radius: 14px;
+  }
+
+  //&::-webkit-scrollbar-track {
+  //  margin: 0 0 20px 0;
+  //}
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+button, input {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+  text-align: left;
+}
+
+.animation-fade-enter {
+  opacity: 0;
+}
+.animation-fade-exit {
+  opacity: 1;
+}
+.animation-fade-enter-active {
+  opacity: 1;
+}
+.animation-fade-exit-active {
+  opacity: 0;
+}
+
+.button {
+  cursor: pointer;
+}
+
+
+.App {
+  --plasma-colors-accent: green;
+  --plasma-colors-primary: rgba(255, 255, 255, 0.56);
+  --postcard-color: white;
+  --semi-postcard-color: rgba(122, 122, 122, 0.28);
+
+  // background:  black url("https://cntnt-ift.sberdevices.ru/ift-smartappide-ba/263/12381/rZLvpY9jHm0PpMfR.png") no-repeat;
+  background:  linear-gradient(26.05deg, rgba(15, 153, 24, 0.14) 0%, rgba(8, 8, 8, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 170, 255, 0.12) 0%, rgba(8, 8, 8, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(0, 102, 255, 0.3) 0%, rgba(8, 8, 8, 0) 99.69%), black;
+  background-size: 100% 100%;
+  min-height: calc(100vh - 150px);
+  padding: 40px 0 110px;
+
+  @include mq("md") {
+    --semi-postcard-color: rgba(255, 255, 255, 0.42);
+  }
+
+  &__spinner {
+    position: absolute;
+    top: calc(50% - 45px);
+    left: calc(50% - 45px);
+    width: 90px !important;
+    height: 90px !important;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__mobile {
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  &_dark {
+    --postcard-color: black;
+
+    @include mq("md") {
+      --semi-postcard-color: rgba(42, 37, 34, 0.6);
+      --plasma-colors-primary: black;
+    }
+  }
+
+  &__dateWrapper {
+    position: absolute;
+    left: 47px;
+    top: 40px;
+  }
+
+  &__time {
+    display: inline;
+    color: #fff;
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: -0.022em;
+  }
+
+  &__date {
+    display: inline;
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.019em;
+    color: rgba(255, 255, 255, 0.56);
+  }
+
+  &__debug {
+    display: none;
+    position: absolute;
+    top: 400px;
+    right: 100px;
+    width: 125px;
+    height: 50px;
+    background-color: #24B23E;
+    color: white;
+    cursor: pointer;
+  }
+
+  &__title {
+    color: #fff;
+    text-align: center;
+
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20px;
+    letter-spacing: -0.019em;
+  }
+}
+

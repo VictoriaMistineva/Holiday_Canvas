@@ -1,0 +1,14 @@
+.debug {
+  width: 50%;
+  height: 50%;
+  min-height: 100vh;
+  margin: auto auto;
+  color: black;
+  padding: 10% 0;
+
+  &__card {
+    border: 1px solid black;
+    padding: 20px 10px;
+    word-break: break-all;
+  }
+}

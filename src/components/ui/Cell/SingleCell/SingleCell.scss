@@ -1,0 +1,69 @@
+@import '../../../../assets/styles/mixins.scss';
+
+.singleCell {
+  width: calc(361px - 60px);
+  display: flex;
+  align-items: center;
+  padding: 6px 30px;
+  background:  rgba(8, 8, 8, 0.28);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 25px;
+  margin-bottom: 8px;
+  cursor: pointer;
+
+  @include mq("md") {
+    width: calc(100% - 60px);
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &__picture {
+    width: 36px;
+    height: 36px;
+    margin-right: 20px;
+  }
+
+  &__contentWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.022em;
+  }
+
+  &__description {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 25px;
+    letter-spacing: -0.022em;
+
+    color: var(--plasma-colors-primary);
+  }
+
+  &__microfon {
+    margin-left: auto;
+    width: 24px;
+    height: 24px;
+
+    & > div {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__arroy {
+    margin-left: 8px;
+  }
+}

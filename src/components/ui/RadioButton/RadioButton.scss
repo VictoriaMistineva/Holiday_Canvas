@@ -1,0 +1,62 @@
+@import '../../../assets/styles/mixins.scss';
+
+.radioButton {
+  $self: &;
+
+  --radio-size: 18px;
+  --radio-color-bg: transparent;
+  --radio-color-border: rgba(255, 255, 255, 0.56);;
+  --radio-color-pin: rgba(255, 255, 255, 0.96);
+
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+
+  &__check-mark {
+    transition: background-color ease-in-out .3s, border ease-in-out .3s;
+
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 var(--radio-size);
+    width: var(--radio-size);
+    height: var(--radio-size);
+    background-color: var(--radio-color-bg);
+    border: 2px solid var(--radio-color-border);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 transparent;
+
+    &::after {
+      transition: opacity ease-in-out .3s;
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      margin: auto;
+      background-color: var(--radio-color-pin);
+      border-radius: inherit;
+      opacity: 0;
+    }
+  }
+
+  &__content {
+    transition: color ease-in-out .3s;
+    margin-left: 18px;
+  }
+
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  &_checked {
+    --radio-color-bg: #1DD13B;
+    --radio-color-border: #27C6E5;
+
+    #{$self}__check-mark::after {
+      opacity: 1;
+    }
+  }
+}
