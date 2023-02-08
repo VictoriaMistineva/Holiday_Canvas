@@ -130,7 +130,7 @@ class Store {
                 this.selected.splice(this.selected.findIndex(item => item.id === newSelected.id), 1);
                 return
             }
-            this.selected = [...this.selected, newSelected];
+            this.selected = [...this.selected, newSelected];                       
         } else {
             this.selected = [newSelected];
             this.closeSelect();

@@ -1,0 +1,27 @@
+.alertItem {
+    position: fixed;
+    background: radial-gradient(72.02% 60.82% at 50.15% 0%, #4C3123 0%, #1A1A1A 100%);
+    width: calc(100% - 24px);
+    left: 12px;
+    bottom: 140px;
+    border-radius: 40px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    z-index: 600;
+}
+
+.alertItem .img{
+    margin-bottom: 24px;
+}
+
+.alertItem .altxt {
+    text-align: center;
+}
+
+.alertItem .lower {
+    color: #9e9e9e;
+    margin-top: 12px;
+    margin-bottom: 40px;
+}

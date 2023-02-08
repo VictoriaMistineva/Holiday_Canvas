@@ -113,7 +113,7 @@ function App() {
         window.evg_assistant = initialize(() => null);
         // @ts-ignore
         window.evg_assistant.on("data", (appData: any) => {
-            console.log(appData)
+            // console.log(appData)
             setDebug((prev) => {
                 return [JSON.stringify(appData), ...prev]
             })

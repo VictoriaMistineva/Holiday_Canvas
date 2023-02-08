@@ -1,0 +1,184 @@
+@import '../../assets/styles/mixins.scss';
+
+.mainPage {
+  display: flex;
+  color: #fff;
+  z-index: 1;
+
+  &__mainPageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 170px);
+
+    @include mq("md") {
+      padding: 25px 0 131px;
+      align-items: flex-start;
+      min-height: calc(100vh - 156px);
+    }
+  }
+
+  &__backgroundPicture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 5px);
+
+    & > img {
+      object-fit: cover;
+    }
+  }
+
+  &__buttonBack {
+    display: none;
+
+    @include mq("md") {
+      --plasma-colors-primary: #FFFFFF;
+
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font: 600 20px/20px 'SB Sans Text', sans-serif;
+      letter-spacing: -0.019em;
+    }
+  }
+
+  &__buttonBackDescription {
+    margin: auto;
+    text-align: center;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    width: 423px;
+
+    &:first-of-type {
+      margin-right: 124px;
+    }
+
+    @include mq("md") {
+      display: flex;
+      flex-direction: column;
+      width: calc(100vw - 16px);
+      min-height: calc(100vh - 156px);
+
+      &:first-of-type {
+        margin-right: 0;
+      }
+
+      &:last-of-type {
+        display: none;
+      }
+    }
+  }
+
+  &__cardHeader {
+    display: flex;
+
+    @include mq("md") {
+      display: none;
+    }
+  }
+
+  &__cardsNumberWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 23px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  &__cardsTitle {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.022em;
+    background: linear-gradient(93.97deg, #1DD13B 6.49%, #27C6E5 93.51%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__cardContent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 18px;
+    margin-left: 63px;
+    cursor: pointer;
+
+    @include mq("md") {
+      margin: 0;
+
+
+      &_holiday {
+        margin-bottom: auto;
+      }
+
+      &_goodDay {
+        margin-top: 22px;
+      }
+    }
+  }
+
+  &__cardTitle {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 16px;
+
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.022em;
+    text-transform: uppercase;
+
+    @include mq("md") {
+      text-align: center;
+      justify-content: center;
+      font: 600 26px/28px 'SB Sans Text', sans-serif;
+    }
+  }
+
+  &__cardMicrofonWrapper {
+    display: none;
+
+    @include mq("md") {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      margin-right: 16px;
+      background: rgba(122, 122, 122, 0.51);
+      border-radius: 20px;
+    }
+  }
+
+  &__iconArrot {
+    width: 20px !important;
+    height: 20px !important;
+    color: rgba(255, 255, 255, 0.56) !important;
+    margin-left: 5px;
+
+
+    @include mq("md") {
+      display: none !important;
+    }
+  }
+
+  &__cardPicture {
+    margin-top: 18px;
+    flex: 0 0 auto;
+    width: auto;
+    height: auto;
+  }
+}

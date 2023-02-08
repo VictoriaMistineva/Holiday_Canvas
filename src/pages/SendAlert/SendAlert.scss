@@ -1,0 +1,77 @@
+@import '../../assets/styles/mixins.scss';
+
+
+.sendAlert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 170px);
+  color: #fff;
+
+  &__contentWrappers {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 366px;
+      height: 354px;
+      top: 0;
+
+      background: rgba(250, 109, 32, 0.1);;
+      filter: blur(71.5px);
+
+      @include mq("md") {
+        width: 311px;
+        height: 301px;
+      }
+    }
+  }
+
+  &__icon {
+    width: 120px;
+    height: 120px;
+    margin: 100px 0 60px;
+
+    @include mq("md") {
+      margin: 74px 0 41px;
+    }
+  }
+
+  &__textContent {
+    width: 325px;
+    margin-bottom: 42px;
+
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: -0.022em;
+
+    @include mq("md") {
+      margin-bottom: 28px;
+      font: 600 16px/28px 'SB Sans Text', sans-serif;
+    }
+  }
+
+  &__subtitle {
+    margin-top: 0px;
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 25px;
+
+    text-align: center;
+    letter-spacing: -0.022em;
+    background: linear-gradient(93.97deg, #1DD13B 6.49%, #27C6E5 93.51%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
