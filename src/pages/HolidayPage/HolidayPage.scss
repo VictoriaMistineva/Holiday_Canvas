@@ -115,7 +115,9 @@
     @include mq("md") {
       --textarea-width: 100%;
       margin-top: 17px;
-      caret-color: rgba(255, 255, 255, 0.6);
+      //caret-color: rgba(255, 255, 255, 0.6);
+      caret-color: var(--postcard-color);
+      color: var(--postcard-color);
       font: 600 14px/28px 'SB Sans Text', sans-serif;
     }
   }
@@ -347,7 +349,7 @@
   &__viewingDescription {
     width: 80%;
     color: var(--postcard-color);
-    font: 600 14px/28px 'SB Sans Text', sans-serif;
+    font: 600 18px/28px 'SB Sans Text', sans-serif;
     margin-bottom: 9px;
   }
 
@@ -440,7 +442,8 @@
       font: 600 18px/28px 'SB Sans Text', sans-serif;
       text-align: center;
       letter-spacing: -0.022em;
-      color: #FFFFFF;
+      //color: #FFFFFF;
+      color: var(--postcard-color);
       margin-bottom: 11px;
     }
 
