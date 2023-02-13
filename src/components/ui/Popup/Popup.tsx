@@ -3,6 +3,8 @@ import {CSSTransition} from "react-transition-group";
 import React from 'react';
 import cn from 'classnames'
 
+import {sendAE} from "src/utils";
+
 import './Popup.scss';
 import Portal from "src/components/ui/Portal";
 import ClickNormalize from 'src/assets/scripts/clickNormalize';
@@ -27,6 +29,7 @@ const Popup: React.FC<PopupProps> = ({ onClose, position, children }) => {
         if (refOverflow.current) {
             clickNormalize = new ClickNormalize(refOverflow.current, {
                 onClick: (): void => {
+                    sendAE("CANCEL__POPUP", {});
                     onClose();
                 },
             });
@@ -41,6 +44,7 @@ const Popup: React.FC<PopupProps> = ({ onClose, position, children }) => {
         const KeyDown = (e: KeyboardEvent): void => {
             if (e.keyCode === 27) {
                 onClose();
+                sendAE("CANCEL__POPUP", {});
             }
         };
 

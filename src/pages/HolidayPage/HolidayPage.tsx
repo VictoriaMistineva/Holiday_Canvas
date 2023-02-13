@@ -139,7 +139,7 @@ const HolidayPage: React.FC = () => {
                         <button className='holidayPage__buttonBack' onClick={() => sendAE("BACK", {})}>
                             <IconChevronLeft />
                         </button>
-                        {!store.isViewing && <div className='holidayPage__date'>{`Сегодня ${date}`}</div>}
+                        {!store.isViewing && <div className='holidayPage__date'>{store.selected.length > 0 ? (store.data as AppDataType).title : `Сегодня ${date}`}</div>}
                     </div>
                     {store.isViewing ? (
                         <div className='holidayPage__viewingContent'>
@@ -155,9 +155,12 @@ const HolidayPage: React.FC = () => {
                     ) : (
                         <>
                             {store.selected.length > 0 ? (
-                                <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
+                                <div onClick={() => sendAE("SWITCH_COLOR", {color:(store.data as AppDataType).color})}> 
+                                    <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
                                     Светлый шрифт
-                                </Switch>
+                                    </Switch>
+                                </div>
+                                
                                 
                             ) : (
                                 <div className='holidayPage__headline'>{(store.data as AppDataType | CongratulationDataType).title}</div>
@@ -240,9 +243,7 @@ const HolidayPage: React.FC = () => {
         <div className='holidayPage' onClick={() => store.setAlertUser(false)}>
             <div className='holidayPage__title'>{title}</div>
             <div className='holidayPage__configurator'>
-                <div>
-                    {/* {console.log( "color___"+ (store.data as AppDataType).color)}
-                    {console.log( "color2___"+ (store.switchColor))} */}
+                <div onClick={() => sendAE("SWITCH_COLOR", {color:(store.data as AppDataType).color})}> 
                     <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
                         Светлый шрифт
                     </Switch>

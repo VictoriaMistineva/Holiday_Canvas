@@ -197,7 +197,7 @@ function App() {
                     <Spinner className='App__spinner' />
                 ) : (
                     <>
-                        {store.page === 'holidayConfigurator' && <SoundControl />}
+                        {(!store.isMobile || (store.page === 'holidayConfigurator' && store.isMobile && store.selected.length <= 0)) && <SoundControl />}
                         <button className="App__debug" onClick={toggleDebug}>Debug</button>
                         {!store.isMobile && store.page !== 'congratulation' && <div className='App__title'>{(store.data as AppDataType | CongratulationDataType | MainType).title}</div>}
                         {!store.isMobile && <div className='App__dateWrapper'>
