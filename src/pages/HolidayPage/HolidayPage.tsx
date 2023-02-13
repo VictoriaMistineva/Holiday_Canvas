@@ -63,10 +63,10 @@ const HolidayPage: React.FC = () => {
                         src={store.selected[0].src as string}
                         onClick={() => {
                             if((store.data as AppDataType).holidayType !== 'BD')
-                            // sendAE("VOISE_RESETCHOOSE", {})
+                            sendAE("CLICK__RESETCHOOSE", {})
                             store.cleanSelected()
                         }}
-                        onClickMicrofon={() => sendAE("VOISE_RESETCHOOSE", {})}
+                        onClickMicrofon={() => sendAE("CLICK_RESETCHOOSE", {})}
                         
                     />
                     
@@ -83,11 +83,15 @@ const HolidayPage: React.FC = () => {
             case store.selected.length > 1:
                 setFirstTab(
                     <UsersCell
-                        onClick={() => store.cleanSelected()}
+                        onClick={() => {
+                            store.cleanSelected()
+                            sendAE("CLICK_RESETCHOOSE", {})
+                        }}
                         title='Список коллег'
                         description='изменить выбор'
                         elements={store.selected}
-                        onClickMicrofon={() => sendAE("VOISE_RESETCHOOSE", {})} />
+                        onClickMicrofon={() => sendAE("CLICK_RESETCHOOSE", {})} 
+                    />
                 )
                 break
             default:
@@ -131,7 +135,6 @@ const HolidayPage: React.FC = () => {
                     setActiveItem={store.setActiveCaruselItem}
                 />
                 <div className={isKeyboardOpen ? "holidayPage__wrapperScreen" : "holidayPage__wrapper"} >
-                {/* <div className='holidayPage__wrapper' > */}
                     <div className='holidayPage__header'>
                         <button className='holidayPage__buttonBack' onClick={() => sendAE("BACK", {})}>
                             <IconChevronLeft />
@@ -207,7 +210,7 @@ const HolidayPage: React.FC = () => {
                                     <Suggest title='К просмотру' onClick={() => store.setIsViewing(true)} />
                                 ) : (
                                     <>
-                                        <div className='holidayPage__sender'>{(store.data as CongratulationDataType).sender}</div>
+                                        <div className='holidayPage__sender'>{store.senderFio}</div>
                                         <Suggest title='Изменить' onClick={() => store.setIsViewing(false)} />
                                         <Suggest title='Отправить' onClick={store.send} />
                                     </>

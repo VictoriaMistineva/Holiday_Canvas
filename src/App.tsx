@@ -144,6 +144,10 @@ function App() {
                 store.setWish(appData.smart_app_data.commandParams.params.wish);
             }
 
+            if (appData?.smart_app_data?.commandParams?.params?.senderFio) {
+                store.setSenderFio(appData.smart_app_data.commandParams.params.senderFio);
+            }
+
             if (appData?.smart_app_data?.commandParams?.params?.isViewing !== undefined) {
                 store.setIsViewing(appData.smart_app_data.commandParams.params.isViewing);
             }

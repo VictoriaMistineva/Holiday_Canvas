@@ -61,6 +61,7 @@ class Store {
     page: string = '';
     selected: SelectListType[] = [];
     wish: string[] = [];
+    senderFio : string = ''
     select: SelectType = {
         selectList: [],
         title: '',
@@ -106,6 +107,9 @@ class Store {
 
     setWish = (newWisth: string[]) => {
         this.wish = newWisth;
+    }
+    setSenderFio= (sender: string) => {
+        this.senderFio = sender;
     }
 
     setIsMobile = (value: boolean) => {
@@ -170,7 +174,7 @@ class Store {
     setIsCurtain = (newIsCurtain: boolean) => {
         this.isCurtain = newIsCurtain;
     }
-
+    
     setActiveRadioButton = (newActiveRadioButton: number) => {
         this.activeRadioButton = newActiveRadioButton;
     }

@@ -54,7 +54,7 @@ const MainPage: React.FC = () => {
                                         description={description}
                                         src={src}
                                         onClick={() => {
-                                            sendAE("CHOOSE_BIRTHDAY", {});
+                                            sendAE("CHOOSE_BIRTHDAY", {id:id, title:title, description: description , src: src});
                                             store.setSelected({id, title, description, src});
                                         }}
                                         onClickMicrofon={() => sendAE("VOISE_RESETCHOOSE", {})}

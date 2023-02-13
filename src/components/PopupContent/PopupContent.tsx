@@ -105,6 +105,7 @@ const PopupContent: React.FC = () => {
                     onClick={() => {
                         store.closeSelect()
                         store.cleanSelected()
+                        sendAE("CANCEL__POPUP", {})
                     }}
                 >
                     Отменить
