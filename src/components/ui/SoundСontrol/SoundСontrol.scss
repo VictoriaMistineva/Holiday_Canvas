@@ -22,7 +22,7 @@
   }
 
   &__icon {
-    --plasma-colors-primary: grey;
+    --plasma-colors-primary:#24B23E;
 
     display: block !important;
     width: 24px;
@@ -37,7 +37,30 @@
       display: inline-block !important;
       margin-bottom: 0;
       margin-right: 6px;
-      --plasma-colors-primary: grey;
+      --plasma-colors-primary: #24B23E;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+  &__iconIsMobile {
+    color: var(--postcard-color);;
+
+    display: block !important;
+    width: 24px;
+    height: 24px;
+    margin-bottom: 34px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    @include mq("md") {
+      display: inline-block !important;
+      margin-bottom: 0;
+      margin-right: 6px;
+      color: var(--postcard-color);
 
       &:last-of-type {
         margin-right: 0;

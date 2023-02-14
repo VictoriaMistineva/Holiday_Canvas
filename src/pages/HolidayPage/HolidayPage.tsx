@@ -62,7 +62,7 @@ const HolidayPage: React.FC = () => {
                         description={store.selected[0].description}
                         src={store.selected[0].src as string}
                         onClick={() => {
-                            if((store.data as AppDataType).holidayType !== 'BD')
+                            // if((store.data as AppDataType).holidayType !== 'BD')
                             sendAE("CLICK__RESETCHOOSE", {})
                             store.cleanSelected()
                         }}
@@ -155,13 +155,12 @@ const HolidayPage: React.FC = () => {
                     ) : (
                         <>
                             {store.selected.length > 0 ? (
-                                <div onClick={() => sendAE("SWITCH_COLOR", {color:(store.data as AppDataType).color})}> 
+                                <div onClick={() => sendAE("SWITCH_COLOR", {color:(store.data as AppDataType).color})}>
                                     <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
                                     Светлый шрифт
                                     </Switch>
                                 </div>
-                                
-                                
+
                             ) : (
                                 <div className='holidayPage__headline'>{(store.data as AppDataType | CongratulationDataType).title}</div>
                             )}
@@ -210,12 +209,18 @@ const HolidayPage: React.FC = () => {
                         <>
                             <div className='holidayPage__suggest'>
                                 {!store.isViewing ? (
-                                    <Suggest title='К просмотру' onClick={() => store.setIsViewing(true)} />
+                                    <Suggest title='К просмотру' onClick={() => {
+                                        store.setIsViewing(true)
+                                        sendAE("SUGGEST_TO_VIEW", {})}
+                                    } />
                                 ) : (
                                     <>
                                         <div className='holidayPage__sender'>{store.senderFio}</div>
-                                        <Suggest title='Изменить' onClick={() => store.setIsViewing(false)} />
-                                        <Suggest title='Отправить' onClick={store.send} />
+
+                                        <Suggest title='Изменить' onClick={() => {
+                                            store.setIsViewing(false) 
+                                            sendAE("SUGGEST_CHANGE", {})}} />
+                                        <Suggest title='Отправить' onClick={store.send} />  
                                     </>
                                 )}
                             </div>
@@ -243,10 +248,12 @@ const HolidayPage: React.FC = () => {
         <div className='holidayPage' onClick={() => store.setAlertUser(false)}>
             <div className='holidayPage__title'>{title}</div>
             <div className='holidayPage__configurator'>
-                <div onClick={() => sendAE("SWITCH_COLOR", {color:(store.data as AppDataType).color})}> 
-                    <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
-                        Светлый шрифт
-                    </Switch>
+                <div>
+                    <div onClick={() => sendAE("SWITCH_COLOR", {color:(store.data as AppDataType).color})}> 
+                        <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
+                            Светлый шрифт
+                        </Switch>
+                    </div>
                     {firstTab}
                 </div>
                 <div className='holidayPage__pictureWrapper'>

@@ -57,6 +57,7 @@ const Textarea: React.FC<TextAreaProps> = ({
              className={cn('textarea', className)}
              onChange={onChangeHandle} value={localValue}
              ref={setTextareaRef}
+             suppressContentEditableWarning={true}
              contentEditable
              {...props}
          />
