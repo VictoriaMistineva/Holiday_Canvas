@@ -229,6 +229,7 @@
   }
 
   &__postcards {
+    z-index: 2;
     display: flex;
     padding: 10px 25px;
     background: rgba(8, 8, 8, 0.28);
@@ -321,6 +322,7 @@
     border-radius: 12px;
 
     &_active {
+      z-index: 5;
       background: linear-gradient(93.97deg, #1DD13B 6.49%, #27C6E5 93.51%);
       cursor: pointer;
     }

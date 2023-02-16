@@ -136,8 +136,11 @@ function App() {
                 store.setSelected(appData.smart_app_data.commandParams.params.selected);
             }
 
-            if (appData?.smart_app_data?.commandParams?.params?.soundControl) {
-                store.setSoundControl(appData.smart_app_data.commandParams.params.soundControl);
+            // if (appData?.smart_app_data?.commandParams?.params?.soundControl) {
+            //     store.setSoundControl(appData.smart_app_data.commandParams.params.soundControl);
+            // }
+            if (appData?.smart_app_data?.commandName === "soundControl") {
+                store.setSoundControl(appData.smart_app_data.commandParams.soundControl);
             }
 
             if (appData?.smart_app_data?.commandParams?.params?.wish) {
@@ -198,7 +201,6 @@ function App() {
                 ) : (
                     <>
                         {(!store.isMobile || (store.page === 'holidayConfigurator' && store.isMobile)) && <SoundControl />}
-                        {/* {!store.isMobile  && <SoundControl />} */}
                         <button className="App__debug" onClick={toggleDebug}>Debug</button>
                         {!store.isMobile && store.page !== 'congratulation' && <div className='App__title'>{(store.data as AppDataType | CongratulationDataType | MainType).title}</div>}
                         {!store.isMobile && <div className='App__dateWrapper'>
