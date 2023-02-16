@@ -9,11 +9,19 @@ import {sendAE} from "src/utils";
 
 const SoundControl = () => {
     return(
+        // <div className='soundСontrol'>
+        //     <div className= {store.isMobile ? 'soundСontrol__iconIsMobile button' :'soundСontrol__icon button'} onClick={() => sendAE('SWITCH_VOLUME', {})}>
+        //         {store.soundControl.volume ? <IconVolumeUp /> : <IconVolumeOff />}
+        //     </div>
+        //     <div className= {store.isMobile ? 'soundСontrol__iconIsMobile button' :'soundСontrol__icon button'} onClick={() => sendAE('SWITCH_MICROFON', {})}>
+        //         {store.soundControl.microfon ? <IconMic /> : <IconMicOff />}
+        //     </div>
+        // </div>
         <div className='soundСontrol'>
-            <div className= {store.isMobile ? 'soundСontrol__iconIsMobile button' :'soundСontrol__icon button'} onClick={() => sendAE('SWITCH_VOLUME', {})}>
+            <div className= {store.isMobile ? 'soundСontrol__iconIsMobile button' :'soundСontrol__icon button'}>
                 {store.soundControl.volume ? <IconVolumeUp /> : <IconVolumeOff />}
             </div>
-            <div className= {store.isMobile ? 'soundСontrol__iconIsMobile button' :'soundСontrol__icon button'} onClick={() => sendAE('SWITCH_MICROFON', {})}>
+            <div className= {store.isMobile ? 'soundСontrol__iconIsMobile button' :'soundСontrol__icon button'}>
                 {store.soundControl.microfon ? <IconMic /> : <IconMicOff />}
             </div>
         </div>

@@ -22,8 +22,8 @@
   }
 
   &__icon {
-    --plasma-colors-primary:#24B23E;
-
+    // --plasma-colors-primary:#24B23E;
+    --plasma-colors-primary: grey;
     display: block !important;
     width: 24px;
     height: 24px;
@@ -37,8 +37,8 @@
       display: inline-block !important;
       margin-bottom: 0;
       margin-right: 6px;
-      --plasma-colors-primary: #24B23E;
-
+      // --plasma-colors-primary: #24B23E;
+      --plasma-colors-primary: grey;
       &:last-of-type {
         margin-right: 0;
       }

@@ -68,17 +68,8 @@ const HolidayPage: React.FC = () => {
                         }}
                         onClickMicrofon={() => sendAE("CLICK_RESETCHOOSE", {})}
                         
-                    />
-                    
-                        
-                    
+                    />   
                 )
-                // TODO убрать!!!!
-                // sendAE("HOLIDAY_PAGE_CELLS", {
-                //                 id: store.selected[0].id,
-                //                 title: store.selected[0].title, 
-                //                 description: store.selected[0].description,
-                //                 src: store.selected[0].src})
                 break
             case store.selected.length > 1:
                 setFirstTab(
@@ -125,6 +116,20 @@ const HolidayPage: React.FC = () => {
     const date = React.useMemo(() => {
         return getDate().split(', ')[1];
     }, []);
+    
+    const switchColors = function(color: "black" | "white") { 
+        sendAE("SWITCH_COLOR", {color: color});
+        const mockFunc = function (mockBool: boolean) { };
+        return mockFunc;
+    }
+
+    // @ts-ignore
+    const test1 = function(e , colors){
+        
+        console.log("testColor----")
+        e.preventDefault();
+        sendAE("SWITCH_COLOR", {color: colors});
+    }
 
     if(store.isMobile) {
         return (
@@ -155,7 +160,7 @@ const HolidayPage: React.FC = () => {
                     ) : (
                         <>
                             {store.selected.length > 0 ? (
-                                <div onClick={() => sendAE("SWITCH_COLOR", {color:(store.data as AppDataType).color})}>
+                                <div>
                                     <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
                                     Светлый шрифт
                                     </Switch>
@@ -249,11 +254,11 @@ const HolidayPage: React.FC = () => {
             <div className='holidayPage__title'>{title}</div>
             <div className='holidayPage__configurator'>
                 <div>
-                    <div onClick={() => sendAE("SWITCH_COLOR", {color:(store.data as AppDataType).color})}> 
+                    <div> 
                         <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
                             Светлый шрифт
                         </Switch>
-                    </div>
+                    </div>    
                     {firstTab}
                 </div>
                 <div className='holidayPage__pictureWrapper'>
