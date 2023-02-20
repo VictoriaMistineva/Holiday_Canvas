@@ -33,6 +33,7 @@ const SingleCellCircleMic: React.FC<SingleCellCircleMicProps> = ({
                 <div className='SingleCellCircleMic__changeDescription'>
                     Изменить выбор
                 </div>
+                
             </div>
             <div
                 className='SingleCellCircleMic__headerMicrofonWrapper'
@@ -41,7 +42,6 @@ const SingleCellCircleMic: React.FC<SingleCellCircleMicProps> = ({
                     e.stopPropagation()
                 }}
             >
-                
                 <IconMic className='wrapperCell__headerMicrofon' />
             </div>
         </div>

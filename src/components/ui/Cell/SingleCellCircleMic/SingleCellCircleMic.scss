@@ -42,7 +42,6 @@
   }
 
   &__changeDescription {
-    //display: flex;
     justify-content: center;
     align-items: center;
     font: 600 14px/28px 'SB Sans Text', sans-serif;
@@ -64,9 +63,10 @@
     display: flex;
     justify-content: center;
     margin-left: auto;
-    margin-right: -15px;
     align-items: center;
-    width: 40px;
+    max-width: 40px;
+    margin-right: -15px;
+    width: 100%;
     height: 40px;
     background: rgba(122, 122, 122, 0.28);
     border-radius: 50%;
