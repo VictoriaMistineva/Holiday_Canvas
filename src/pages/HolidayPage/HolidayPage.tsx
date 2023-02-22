@@ -28,6 +28,7 @@ import SendAlert from "src/pages/SendAlert"
 import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 import Suggest from "src/components/ui/Suggest/Suggest";
 import SendReportPage from '../SendReportPage';
+import { Underline } from '@sberdevices/plasma-ui';
 
 const HolidayPage: React.FC = () => {
     const isKeyboardOpen = useDetectKeyboardOpen();
@@ -124,12 +125,14 @@ const HolidayPage: React.FC = () => {
     }
 
     // @ts-ignore
-    const test1 = function(e , colors){
+    // const test1 = function(){
         
-        console.log("testColor----")
-        e.preventDefault();
-        sendAE("SWITCH_COLOR", {color: colors});
-    }
+    //     console.log("test")
+    //     sendAE("CLOSE_WISH", {});
+    //     //e.preventDefault();
+    //     return store.setWish
+        
+    // }
 
     if(store.isMobile) {
         return (
@@ -199,6 +202,7 @@ const HolidayPage: React.FC = () => {
                                     </button>
                                 </div>
                                 <div className='holidayPage__wish'>
+                                    
                                     <WrapperCell
                                         onClickMicrofon={() => sendAE("VOISE_WISH", {})}
                                         title='Добавить к открытке пожелание'
@@ -212,6 +216,7 @@ const HolidayPage: React.FC = () => {
                     )}
                     {store.selected.length > 0 && (
                         <>
+                            {store.isViewing && store.senderFio && <div className='holidayPage__sender'>{store.senderFio}</div>}
                             <div className='holidayPage__suggest'>
                                 {!store.isViewing ? (
                                     <Suggest title='К просмотру' onClick={() => {
@@ -220,8 +225,6 @@ const HolidayPage: React.FC = () => {
                                     } />
                                 ) : (
                                     <>
-                                        <div className='holidayPage__sender'>{store.senderFio}</div>
-
                                         <Suggest title='Изменить' onClick={() => {
                                             store.setIsViewing(false) 
                                             sendAE("SUGGEST_CHANGE", {})}} />
@@ -231,7 +234,6 @@ const HolidayPage: React.FC = () => {
                             </div>
                         </>
                     )}
-                {/* <>{console.log((store.data as CongratulationDataType).sender)}</> */}
                 </div>
                 <Curtain isOpen={store.isOpenAlertUser}>
                     {/* <SendAlert title={store.openAlertUserMsg} subtitle={store.openAlertUsertSubMsg}/> */}

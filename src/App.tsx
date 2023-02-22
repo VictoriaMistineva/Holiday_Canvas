@@ -136,12 +136,12 @@ function App() {
                 store.setSelected(appData.smart_app_data.commandParams.params.selected);
             }
 
-            // if (appData?.smart_app_data?.commandParams?.params?.soundControl) {
-            //     store.setSoundControl(appData.smart_app_data.commandParams.params.soundControl);
-            // }
-            if (appData?.smart_app_data?.commandName === "soundControl") {
-                store.setSoundControl(appData.smart_app_data.commandParams.soundControl);
+            if (appData?.smart_app_data?.commandParams?.params?.soundControl) {
+                store.setSoundControl(appData.smart_app_data.commandParams.params.soundControl);
             }
+            // if (appData?.smart_app_data?.commandName === "soundControl") {
+            //     store.setSoundControl(appData.smart_app_data.commandParams.soundControl);
+            // }
 
             if (appData?.smart_app_data?.commandParams?.params?.wish) {
                 store.setWish(appData.smart_app_data.commandParams.params.wish);
@@ -215,8 +215,6 @@ function App() {
                         {store.page === 'holidayConfigurator' && <HolidayPage />}
                         {store.page === 'congratulation' && <CongratulationPage />}
                         {store.page === 'sendReport' && <SendReportPage />}
-                        {/*<MainPage />*/}
-                        {/* {console.log("test isOpenAlertUser----------", store.isOpenAlertUser)} */}
                         <Popup
                             position={store.select.popupType as 'left' | 'right'}
                             open={store.select.popupType !== 'none'}
