@@ -118,22 +118,6 @@ const HolidayPage: React.FC = () => {
         return getDate().split(', ')[1];
     }, []);
     
-    const switchColors = function(color: "black" | "white") { 
-        sendAE("SWITCH_COLOR", {color: color});
-        const mockFunc = function (mockBool: boolean) { };
-        return mockFunc;
-    }
-
-    // @ts-ignore
-    // const test1 = function(){
-        
-    //     console.log("test")
-    //     sendAE("CLOSE_WISH", {});
-    //     //e.preventDefault();
-    //     return store.setWish
-        
-    // }
-
     if(store.isMobile) {
         return (
             <div className='holidayPage'onClick={() => store.setAlertUser(false)}>
@@ -201,12 +185,13 @@ const HolidayPage: React.FC = () => {
                                         <IconChevronRight />
                                     </button>
                                 </div>
-                                <div className='holidayPage__wish'>
+                                <div className='holidayPage__wish' >
                                     
                                     <WrapperCell
                                         onClickMicrofon={() => sendAE("VOISE_WISH", {})}
                                         title='Добавить к открытке пожелание'
                                         className='holidayPage__multipleCellAdd holidayPage__multipleCellAdd_input'
+                                        
                                     >
                                         <Textarea isMobile={store.isMobile} value={store.wish} className='holidayPage__textarea' onChange={store.setWish} />
                                     </WrapperCell>

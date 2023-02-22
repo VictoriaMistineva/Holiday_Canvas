@@ -30,7 +30,8 @@ const Popup: React.FC<PopupProps> = ({ onClose, position, children }) => {
             clickNormalize = new ClickNormalize(refOverflow.current, {
                 onClick: (): void => {
                     onClose();
-                    position !== "right" ? sendAE("CANCEL__POPUP", {}) : sendAE("CLOSE_WISH", {})
+                    if(position !== "right")
+                        sendAE("CANCEL__POPUP", {})
                         
                 },
             });
@@ -45,7 +46,8 @@ const Popup: React.FC<PopupProps> = ({ onClose, position, children }) => {
         const KeyDown = (e: KeyboardEvent): void => {
             if (e.keyCode === 27) {
                 onClose();
-                position !== "right" ? sendAE("CANCEL__POPUP", {}) : sendAE("CLOSE_WISH", {})
+                if(position !== "right")
+                    sendAE("CANCEL__POPUP", {})
             }
         };
 
