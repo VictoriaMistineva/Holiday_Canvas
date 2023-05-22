@@ -54,6 +54,7 @@ const PopupContent: React.FC = () => {
                                     onClick={function(){ 
                                         store.setSelected({title, description, src, id});
                                         sendAE("HOLIDAY_PAGE_CELLS", {
+                                            birthday:store.selected[0].birthday,
                                             id: store.selected[0].id,
                                             title: store.selected[0].title, 
                                             description: store.selected[0].description,

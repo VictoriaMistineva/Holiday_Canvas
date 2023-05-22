@@ -2,6 +2,7 @@ import React from 'react';
 import './HolidayPage.scss';
 import './Alert.css'
 
+
 import { typography } from "@sberdevices/plasma-tokens";
 
 import {MultipleCell, SingleCellCircleMic, WrapperCell, UsersCell} from "src/components/ui/Cell";
@@ -12,6 +13,7 @@ import { observer } from 'mobx-react-lite'
 
 import { CONGRATULATE } from 'src/App';
 import Curtain from "src/components/ui/Сurtain";
+import CurtainAlert from "src/components/ui/СurtainAlert";
 import Picture from "src/components/ui/Picture/Picture";
 import Switch from "src/components/ui/Switch/Switch";
 import Carusel from "src/components/ui/Carusel";
@@ -24,6 +26,7 @@ import useDetectKeyboardOpen from "use-detect-keyboard-open";
 
 
 import SendAlert from "src/pages/SendAlert"
+
 
 import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 import Suggest from "src/components/ui/Suggest/Suggest";
@@ -49,6 +52,9 @@ const HolidayPage: React.FC = () => {
                 break;
             case 'GD':
                 setTitle('Давайте выберем кого поздравить, категорию открытки и поздравление')
+                break;
+            case 'thanks_holidayType':
+                setTitle('Давайте выберем категорию открытки и поздравление')
                 break;
         }
     }, [(store.data as AppDataType).holidayType])
@@ -120,7 +126,7 @@ const HolidayPage: React.FC = () => {
     
     if(store.isMobile) {
         return (
-            <div className='holidayPage'onClick={() => store.setAlertUser(false)}>
+            <div className='holidayPage' onClick={() => {store.setAlertUser(false); store.setSendAlert(false)}}>
                 <Carusel
                     carouselPictures={(store.data as AppDataType)?.pictures}
                     activeItem={store.activeCaruselItem}
@@ -203,6 +209,7 @@ const HolidayPage: React.FC = () => {
                         <>
                             {store.isViewing && store.senderFio && <div className='holidayPage__sender'>{store.senderFio}</div>}
                             <div className='holidayPage__suggest'>
+
                                 {!store.isViewing ? (
                                     <Suggest title='К просмотру' onClick={() => {
                                         store.setIsViewing(true)
@@ -221,7 +228,6 @@ const HolidayPage: React.FC = () => {
                     )}
                 </div>
                 <Curtain isOpen={store.isOpenAlertUser}>
-                    {/* <SendAlert title={store.openAlertUserMsg} subtitle={store.openAlertUsertSubMsg}/> */}
                     <div className="sendAlertMobile__contentWrappers">
                         <img className="sendAlertMobile__icon" src="./icons/warning.svg" alt="none" />
                         <div style={typography.body1} className="sendAlertMobile__textContent">
@@ -232,12 +238,13 @@ const HolidayPage: React.FC = () => {
                             </div>
                     </div>
                 </Curtain>
+                <CurtainAlert isOpen={store.isOpenSendAlert} title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg}></CurtainAlert>
             </div>
         )
     }
 
     return(
-        <div className='holidayPage' onClick={() => store.setAlertUser(false)}>
+        <div className='holidayPage' onClick={() => {store.setAlertUser(false);store.setSendAlert(false)}}>
             <div className='holidayPage__title'>{title}</div>
             <div className='holidayPage__configurator'>
                 <div>
@@ -313,6 +320,7 @@ const HolidayPage: React.FC = () => {
             </div>
             
             <Curtain isOpen={store.isOpenAlertUser}> <SendAlert title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg} /> </Curtain>
+            <CurtainAlert isOpen={store.isOpenSendAlert} title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg}></CurtainAlert>
         </div>
     )
 }

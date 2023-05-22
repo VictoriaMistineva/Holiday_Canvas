@@ -16,6 +16,7 @@ export type SelectListType = {
     id?: string,
     title: string,
     description?: string,
+    birthday?: string,
     src?: string | false,
 }
 
@@ -52,8 +53,8 @@ export type AppDataType = {
     type: string,
     pictures: string[],
     postcards: PostcardsType[],
-    // BD - birthday, GD - good day
-    holidayType: 'holiday' | 'BD' | 'GD',
+    // BD - birthday, GD - good day thanks_holidayType - поблагодарить
+    holidayType: 'holiday' | 'BD' | 'GD'| 'thanks_holidayType',
     color: 'white' | 'black'
 }
 
@@ -79,10 +80,12 @@ class Store {
     activeCaruselItem = 1;
     isMobile: boolean = false;
     isOpenAlertUser: boolean = false;
+    isOpenSendAlert: boolean = false;
     openAlertUserMsg: string = "";
     openAlertUserSubMsg: string = "";
     isViewing: boolean = false;
     isCurtain: boolean = false;
+    isCurtainThanks: boolean = false;
     soundControl: SoundControlType = {
         microfon: false,
         volume: false,
@@ -118,6 +121,9 @@ class Store {
 
     setAlertUser = (open: boolean) => {
         this.isOpenAlertUser = open;
+    }
+    setSendAlert = (open: boolean) => {
+        this.isOpenSendAlert = open;
     }
 
     setOpenAlertUserMsg = (msg : string) => {
@@ -173,6 +179,9 @@ class Store {
 
     setIsCurtain = (newIsCurtain: boolean) => {
         this.isCurtain = newIsCurtain;
+    }
+    setIsCurtainThanks = (newIsCurtainThanks: boolean) => {
+        this.isCurtainThanks = newIsCurtainThanks;
     }
     
     setActiveRadioButton = (newActiveRadioButton: number) => {

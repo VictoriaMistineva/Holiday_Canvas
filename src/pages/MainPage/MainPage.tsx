@@ -12,10 +12,11 @@ import {sendAE} from "../../utils";
 import { observer } from 'mobx-react-lite'
 import store, {MainType} from "src/store";
 import {getDate2} from "../../assets/scripts/Date";
+import CurtainAlert from "src/components/ui/СurtainAlert";
 
 const MainPage: React.FC = () => {
     return(
-        <div className='mainPage__mainPageWrapper'>
+        <div className='mainPage__mainPageWrapper' onClick={() => {store.setSendAlert(false)}}>
             {store.isMobile && <div className='mainPage__backgroundPicture'>
                 <img src={(store.data as MainType).bg} alt='bg' />
             </div>}
@@ -47,14 +48,16 @@ const MainPage: React.FC = () => {
                                 <IconChevronRight className='mainPage__iconArrot' />
                             </div>
                             <div>
-                                {(store.data as MainType).birthdays.map(({ id, title, description, src }) => (
+                                {(store.data as MainType).birthdays.map(({id, title, birthday, description, src}) => (
+                                    
                                     <SingleCell
                                         key={id}
                                         title={title}
                                         description={description}
                                         src={src}
                                         onClick={() => {
-                                            sendAE("CHOOSE_BIRTHDAY", {id:id, title:title, description: description , src: src});
+                                            console.log("CHOOSE_BIRTHDAY-----   " + id+ title+ birthday+ description+ src)
+                                            sendAE("CHOOSE_BIRTHDAY", {id:id, title: title, birthday: birthday, description: description , src: src});
                                             store.setSelected({id, title, description, src});
                                         }}
                                         onClickMicrofon={() => sendAE("VOISE_RESETCHOOSE", {})}
@@ -89,6 +92,7 @@ const MainPage: React.FC = () => {
                     </div>
                 </div>
             </div>
+            <CurtainAlert isOpen={store.isOpenSendAlert} title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg}></CurtainAlert>
         </div>
     )
 }

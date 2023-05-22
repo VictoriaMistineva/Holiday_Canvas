@@ -161,4 +161,25 @@
       margin-right: 20px;
     }
   }
-}
+  &__send {
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 143px;
+    height: 40px;
+  }
+
+}  
+.saggestConteiner
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 100px;
+    right: 0;
+    margin-right: 20px;
+  }

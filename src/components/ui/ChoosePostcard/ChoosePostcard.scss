@@ -30,4 +30,17 @@
     border-radius: 12px;
     cursor: pointer;
   }
+  &__curtainThanks{
+    margin-top: 32px;
+  }
+
+  &__curtainConteiner {
+    margin-bottom: 13px;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__titleCurtain {
+    font: 600 16px/25px 'SB Sans Text', sans-serif;
+    color: rgba(255, 255, 255, 0.56);
+  }
 }

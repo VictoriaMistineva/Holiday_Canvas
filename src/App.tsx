@@ -32,7 +32,7 @@ const initialize = (getState: any) => {
     if (process.env.REACT_APP_DEB === "t") {
         return createSmartappDebugger({
             token: process.env.REACT_APP_ASSISTANT_TOKEN || '1',
-            initPhrase: "запусти морковку",
+            initPhrase: "запусти маракуя",
             getState,
         });
     }
@@ -53,7 +53,7 @@ export const CONGRATULATE: MultipleCellElement[] = [
         },
     },
     {
-        title: 'Поздравить  agile |  подраздление  ',
+        title: 'Поздравить  agile |  подраздeление  ',
         onClick: () => {
             sendAE("CHOOSE_DIVISION", {})
         },
@@ -113,13 +113,23 @@ function App() {
         window.evg_assistant = initialize(() => null);
         // @ts-ignore
         window.evg_assistant.on("data", (appData: any) => {
-            // console.log(appData)
+            // console.log("appData------ " + JSON.stringify(appData))
             setDebug((prev) => {
                 return [JSON.stringify(appData), ...prev]
             })
 
-            if (appData.smart_app_data?.commandName === "showAlert") {
-                alert(`${appData.smart_app_data.commandParams.upperText}, ${appData.smart_app_data.commandParams.lowerText}`)
+            if (appData?.smart_app_data?.commandParams?.params?.sendAlert) {
+               if (appData.smart_app_data.commandParams.params.sendAlert === true) {
+                    store.setSendAlert(appData.smart_app_data.commandParams.params.sendAlert);
+                    store.setOpenAlertUserMsg(appData.smart_app_data.commandParams.params.alertTitle);
+                    store.setOpenAlertUserSubMsg(appData.smart_app_data.commandParams.params.alertSubtitle);
+                }
+            }
+
+            if (appData?.smart_app_data?.commandParams?.params?.sendAppreciateChoice) {
+                if (appData.smart_app_data.commandParams.params.sendAppreciateChoice === true && store.isMobile) {
+                    store.setIsCurtainThanks(appData.smart_app_data.commandParams.params.sendAppreciateChoice);
+                 }
             }
 
             if (appData?.smart_app_data?.commandParams?.screenName?.length > 0) {
@@ -139,10 +149,6 @@ function App() {
             if (appData?.smart_app_data?.commandParams?.params?.soundControl) {
                 store.setSoundControl(appData.smart_app_data.commandParams.params.soundControl);
             }
-            // if (appData?.smart_app_data?.commandName === "soundControl") {
-            //     store.setSoundControl(appData.smart_app_data.commandParams.soundControl);
-            // }
-
             if (appData?.smart_app_data?.commandParams?.params?.wish) {
                 store.setWish(appData.smart_app_data.commandParams.params.wish);
             }
@@ -168,10 +174,10 @@ function App() {
             }
 
             if (appData?.smart_app_data?.commandParams?.params?.alertUser) {
-                if (appData.smart_app_data.commandParams.params.alertUser === true) {
-                    store.setAlertUser(appData.smart_app_data.commandParams.params.alertUser);
-                    store.setOpenAlertUserMsg(appData.smart_app_data.commandParams.params.alertTitle);
-                    store.setOpenAlertUserSubMsg(appData.smart_app_data.commandParams.params.alertSubtitle);
+                if (appData.smart_app_data.commandParams.params?.alertUser === true) {
+                    store.setAlertUser(appData.smart_app_data.commandParams.params?.alertUser);
+                    store.setOpenAlertUserMsg(appData.smart_app_data.commandParams.params?.alertTitle);
+                    store.setOpenAlertUserSubMsg(appData.smart_app_data.commandParams.params?.alertSubtitle);
                     store.cleanSelected();
                 }
             }

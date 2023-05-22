@@ -1,5 +1,6 @@
 import React from "react";
 import './ChoosePostcard.scss'
+import { IconChevronRight } from "@sberdevices/plasma-icons";
 
 import store, {AppDataType} from "../../../store";
 import { observer } from 'mobx-react-lite'
@@ -13,20 +14,49 @@ const ChoosePostcard = () => {
         sendAE("NEW_POSTCARD_CATEGORY", {index});
         store.setIsCurtain(false);
     }, [store.isCurtain, store.activeRadioButton])
+
+    React.useEffect(() => {
+        if(store.isCurtainThanks)
+        {
+            sendAE("sendAppreciate", {});
+        }
+    },[store.isCurtainThanks])
+
     return(
-        <Curtain isOpen={store.isCurtain}>
-            <div className='choosePostcard__title'>Хотите изменить категорию?</div>
-            <div className='choosePostcard__radioButtonWrapper'>
-                {(store.data as AppDataType)?.postcards?.map(({title}, index) => (
-                    <RadioButton className='choosePostcard__radioButton' checked={index === store.activeRadioButton} onClick={() => store.setActiveRadioButton(index)}>
-                        {title}
-                    </RadioButton>
-                ))}
-            </div>
-            <div className='choosePostcard__button' onClick={onHandlerSelect}>
-                Выбрать
-            </div>
-        </Curtain>
+        <>
+            <Curtain isOpen={store.isCurtain}>
+                <div className='choosePostcard__title'>Хотите изменить категорию?</div>
+                <div className='choosePostcard__radioButtonWrapper'>
+                    {(store.data as AppDataType)?.postcards?.map(({title}, index) => (
+                        <RadioButton className='choosePostcard__radioButton' checked={index === store.activeRadioButton} onClick={() => store.setActiveRadioButton(index)}>
+                            {title}
+                        </RadioButton>
+                    ))}
+                </div>
+                <div className='choosePostcard__button' onClick={onHandlerSelect}>
+                    Выбрать
+                </div>
+            </Curtain>
+
+            <Curtain isOpen={store.isCurtainThanks} >
+                <div className='choosePostcard__curtainThanks'  >
+                    <div className='choosePostcard__curtainConteiner'onClick={()=>{store.setIsCurtainThanks(false);sendAE("sendCongratulation", {})}}>
+                        <div className='choosePostcard__titleCurtain'>
+                            Отправить открытку
+                        </div>
+                        <IconChevronRight/>
+                    </div>
+                    <div className='choosePostcard__curtainConteiner' onClick={()=>{store.setIsCurtainThanks(false);sendAE("sendTextCongratulation", {})}} >
+                        <div className='choosePostcard__titleCurtain'>
+                            Отправить текст <br></br>«Благодарю за открытку» 
+                        </div>
+                        <IconChevronRight/>
+                    </div>
+                </div>
+
+            </Curtain>
+        </>
+        
     )
 }
 
