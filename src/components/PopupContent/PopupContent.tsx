@@ -29,7 +29,7 @@ const PopupContent: React.FC = () => {
             default:
                 setContent(
                     <div className={cn('popupContent__cards', store.select.search && 'popupContent__cards_search')}>
-                        {(store.select.selectList as SelectListType[]).map(({title, description, src, id}, index) => {
+                        {(store.select.selectList as SelectListType[]).map(({title, description, src, id, birthday}, index) => {
                             let newTitle: any = '';
                             if (title.toLowerCase().search(search.toLowerCase()) > -1) {
                                 newTitle = (
@@ -52,13 +52,14 @@ const PopupContent: React.FC = () => {
                                 <div
                                     key={index}
                                     onClick={function(){ 
-                                        store.setSelected({title, description, src, id});
+                                        store.setSelected({title, description, src, id, birthday});
                                         sendAE("HOLIDAY_PAGE_CELLS", {
                                             birthday:store.selected[0].birthday,
                                             id: store.selected[0].id,
                                             title: store.selected[0].title, 
                                             description: store.selected[0].description,
-                                            src: store.selected[0].src})
+                                            src: store.selected[0].src});
+                                        console.log("HOLIDAY_PAGE_CELLS----   " + store.selected[0].birthday);
                                     }}
                                     className={cn(
                                         'popupContent__card',

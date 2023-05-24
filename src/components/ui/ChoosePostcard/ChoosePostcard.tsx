@@ -38,23 +38,24 @@ const ChoosePostcard = () => {
                 </div>
             </Curtain>
 
-            <Curtain isOpen={store.isCurtainThanks} >
-                <div className='choosePostcard__curtainThanks'  >
-                    <div className='choosePostcard__curtainConteiner'onClick={()=>{store.setIsCurtainThanks(false);sendAE("sendCongratulation", {})}}>
-                        <div className='choosePostcard__titleCurtain'>
-                            Отправить открытку
+            {store.isMobile && <Curtain isOpen={store.isCurtainThanks} >
+                    <div className='choosePostcard__curtainThanks'  >
+                        <div className='choosePostcard__curtainConteiner'onClick={()=>{store.setIsCurtainThanks(false);sendAE("sendCongratulation", {})}}>
+                            <div className='choosePostcard__titleCurtain'>
+                                Отправить открытку
+                            </div>
+                            <IconChevronRight/>
                         </div>
-                        <IconChevronRight/>
-                    </div>
-                    <div className='choosePostcard__curtainConteiner' onClick={()=>{store.setIsCurtainThanks(false);sendAE("sendTextCongratulation", {})}} >
-                        <div className='choosePostcard__titleCurtain'>
-                            Отправить текст <br></br>«Благодарю за открытку» 
+                        <div className='choosePostcard__curtainConteiner' onClick={()=>{store.setIsCurtainThanks(false);sendAE("sendTextCongratulation", {})}} >
+                            <div className='choosePostcard__titleCurtain'>
+                                Отправить текст <br></br>«Благодарю за открытку» 
+                            </div>
+                            <IconChevronRight/>
                         </div>
-                        <IconChevronRight/>
                     </div>
-                </div>
 
-            </Curtain>
+                </Curtain>
+            }
         </>
         
     )

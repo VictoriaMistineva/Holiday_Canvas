@@ -85,6 +85,7 @@ class Store {
     openAlertUserSubMsg: string = "";
     isViewing: boolean = false;
     isCurtain: boolean = false;
+    isSaggestWebThanks: boolean = false;
     isCurtainThanks: boolean = false;
     soundControl: SoundControlType = {
         microfon: false,
@@ -187,7 +188,9 @@ class Store {
     setActiveRadioButton = (newActiveRadioButton: number) => {
         this.activeRadioButton = newActiveRadioButton;
     }
-
+    setSaggestWebThanks= (saggestWebThanks: boolean) => {
+        this.isSaggestWebThanks = saggestWebThanks;
+    }
     send = () => {
         this.setPage('');
         if(this.selected && (this.data as AppDataType).holidayType) {

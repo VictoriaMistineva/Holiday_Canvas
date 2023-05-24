@@ -24,6 +24,12 @@ import CurtainAlert from "src/components/ui/СurtainAlert";
    *
    */
 
+const handleClickThacks = () =>{
+    sendAE("sendAppreciate", {});
+    store.setIsCurtainThanks(true);
+    store.setSaggestWebThanks(true);
+}
+
 const CongratulationPage = () => {
     return(
         <div>
@@ -47,14 +53,26 @@ const CongratulationPage = () => {
                     </div>
                     
                 </div>
-                {store.isMobile &&
+                {(!store.isSaggestWebThanks || store.isMobile ) && 
                     <div className="saggestConteiner">
                         <Suggest title='Пожелать хорошего дня'
                                         onClick={() => sendAE("sendCongratulationGoodDay", {})}
                                     >
                         </Suggest >
                         <Suggest title='Поблагодарить'
-                                        onClick={() => {sendAE("sendAppreciate", {}); store.setIsCurtainThanks(true)}}
+                                        onClick={() => handleClickThacks()}
+                                    >
+                        </Suggest >
+                    </div>
+                };
+                {store.isSaggestWebThanks &&
+                    <div className="saggestConteiner">
+                        <Suggest title='Отправить открытку'
+                                        onClick={() => sendAE("sendCongratulation", {})}
+                                    >
+                        </Suggest >
+                        <Suggest title='Отправить текст «Благодарю за открытку»'
+                                        onClick={() => {sendAE("sendTextCongratulation", {})}}
                                     >
                         </Suggest >
                     </div>
