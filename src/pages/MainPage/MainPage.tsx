@@ -56,7 +56,6 @@ const MainPage: React.FC = () => {
                                         description={description}
                                         src={src}
                                         onClick={() => {
-                                            console.log("CHOOSE_BIRTHDAY-----   " + id+ title+ birthday+ description+ src)
                                             sendAE("CHOOSE_BIRTHDAY", {id:id, title: title, birthday: birthday, description: description , src: src});
                                             store.setSelected({id, title, description, src,birthday});
                                         }}

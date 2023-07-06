@@ -32,7 +32,7 @@ const initialize = (getState: any) => {
     if (process.env.REACT_APP_DEB === "t") {
         return createSmartappDebugger({
             token: process.env.REACT_APP_ASSISTANT_TOKEN || '1',
-            initPhrase: "запусти морковку",
+            initPhrase: "запусти авокадо",
             getState,
         });
     }

@@ -65,7 +65,7 @@ const CongratulationPage = () => {
                         </Suggest >
                     </div>
                 };
-                {store.isSaggestWebThanks &&
+                {store.isSaggestWebThanks && !store.isMobile &&
                     <div className="saggestConteiner">
                         <Suggest title='Отправить открытку'
                                         onClick={() => sendAE("sendCongratulation", {})}

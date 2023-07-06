@@ -59,7 +59,6 @@ const PopupContent: React.FC = () => {
                                             title: store.selected[0].title, 
                                             description: store.selected[0].description,
                                             src: store.selected[0].src});
-                                        console.log("HOLIDAY_PAGE_CELLS----   " + store.selected[0].birthday);
                                     }}
                                     className={cn(
                                         'popupContent__card',
