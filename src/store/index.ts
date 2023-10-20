@@ -53,8 +53,8 @@ export type AppDataType = {
     type: string,
     pictures: string[],
     postcards: PostcardsType[],
-    // BD - birthday, GD - good day thanks_holidayType - поблагодарить
-    holidayType: 'holiday' | 'BD' | 'GD'| 'thanks_holidayType',
+    // BD - birthday, GD - good day AP - поблагодарить
+    holidayType: 'holiday' | 'BD' | 'GD',
     color: 'white' | 'black'
 }
 
@@ -62,6 +62,7 @@ class Store {
     page: string = '';
     selected: SelectListType[] = [];
     wish: string[] = [];
+    wishType: string = ''
     senderFio : string = ''
     select: SelectType = {
         selectList: [],
@@ -86,6 +87,7 @@ class Store {
     isViewing: boolean = false;
     isCurtain: boolean = false;
     isSaggestWebThanks: boolean = false;
+    backButtonToExit: boolean|undefined = false;
     isCurtainThanks: boolean = false;
     soundControl: SoundControlType = {
         microfon: false,
@@ -108,9 +110,14 @@ class Store {
     switchColor = () =>  {
         (this.data as AppDataType).color === 'white' ? (this.data as AppDataType).color = 'black' : (this.data as AppDataType).color = 'white';
     }
-
+    setBackButtonToExit = (isbackButtonToExit: boolean|undefined) => {
+        this.backButtonToExit = isbackButtonToExit;
+    }
     setWish = (newWisth: string[]) => {
         this.wish = newWisth;
+    }
+    setWishType = (newWisthType : string) => {
+        this.wishType = newWisthType ;
     }
     setSenderFio= (sender: string) => {
         this.senderFio = sender;

@@ -6,7 +6,7 @@ import './Alert.css'
 import { typography } from "@sberdevices/plasma-tokens";
 
 import {MultipleCell, SingleCellCircleMic, WrapperCell, UsersCell} from "src/components/ui/Cell";
-import { IconChevronRight, IconChevronLeft, IconMic } from "@sberdevices/plasma-icons";
+import { IconChevronRight, IconChevronLeft, IconMic ,IconChevronDown} from "@sberdevices/plasma-icons";
 
 import store, {AppDataType, CongratulationDataType} from "src/store";
 import { observer } from 'mobx-react-lite'
@@ -38,10 +38,10 @@ const HolidayPage: React.FC = () => {
     const [firstTab, setFirstTab] = React.useState<any>(null);
     const [secondTab, setSecondTab] = React.useState<any>(null);
     const [title, setTitle] = React.useState<string>('');
+    
     const sendCongratulation = React.useCallback(() => {
         store.send()
     }, [])
-
     React.useEffect(() => {
         switch ((store.data as AppDataType).holidayType) {
             case 'holiday':
@@ -52,9 +52,6 @@ const HolidayPage: React.FC = () => {
                 break;
             case 'GD':
                 setTitle('Давайте выберем кого поздравить, категорию открытки и поздравление')
-                break;
-            case 'thanks_holidayType':
-                setTitle('Давайте выберем категорию открытки и поздравление')
                 break;
         }
     }, [(store.data as AppDataType).holidayType])
@@ -123,7 +120,13 @@ const HolidayPage: React.FC = () => {
     const date = React.useMemo(() => {
         return getDate().split(', ')[1];
     }, []);
-    
+
+    const handleClickBACK = () =>{
+        sendAE("BACK", {})
+        store.cleanSelected()
+        console.log("store.backButtonToExit-- " + store.backButtonToExit )
+        
+    }
     if(store.isMobile) {
         return (
             <div className='holidayPage' onClick={() => {store.setAlertUser(false); store.setSendAlert(false)}}>
@@ -134,8 +137,8 @@ const HolidayPage: React.FC = () => {
                 />
                 <div className={isKeyboardOpen ? "holidayPage__wrapperScreen" : "holidayPage__wrapper"} >
                     <div className='holidayPage__header'>
-                        <button className='holidayPage__buttonBack' onClick={() => sendAE("BACK", {})}>
-                            <IconChevronLeft />
+                        <button className='holidayPage__buttonBack' onClick={handleClickBACK}>
+                            {store.backButtonToExit ? <IconChevronDown/> : <IconChevronLeft />}
                         </button>
                         {!store.isViewing && <div className='holidayPage__date'>{store.selected.length > 0 ? (store.data as AppDataType).title : `Сегодня ${date}`}</div>}
                     </div>
@@ -227,7 +230,7 @@ const HolidayPage: React.FC = () => {
                         </>
                     )}
                 </div>
-                <Curtain isOpen={store.isOpenAlertUser}>
+                <Curtain isOpen={store.isOpenAlertUser} isAutoClose={true}>
                     <div className="sendAlertMobile__contentWrappers">
                         <img className="sendAlertMobile__icon" src="./icons/warning.svg" alt="none" />
                         <div style={typography.body1} className="sendAlertMobile__textContent">
@@ -319,7 +322,7 @@ const HolidayPage: React.FC = () => {
                 Отправить
             </div>
             
-            <Curtain isOpen={store.isOpenAlertUser}> <SendAlert title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg} /> </Curtain>
+            <Curtain isOpen={store.isOpenAlertUser} isAutoClose={true} > <SendAlert title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg} /> </Curtain>
             <CurtainAlert isOpen={store.isOpenSendAlert} title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg}></CurtainAlert>
         </div>
     )

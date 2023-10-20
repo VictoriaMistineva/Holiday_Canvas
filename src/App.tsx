@@ -32,7 +32,7 @@ const initialize = (getState: any) => {
     if (process.env.REACT_APP_DEB === "t") {
         return createSmartappDebugger({
             token: process.env.REACT_APP_ASSISTANT_TOKEN || '1',
-            initPhrase: "запусти авокадо",
+            initPhrase: "запусти Coffee",
             getState,
         });
     }
@@ -112,6 +112,11 @@ function App() {
         // @ts-ignore
         window.evg_assistant = initialize(() => null);
         // @ts-ignore
+        window.evg_assistant.on('start', () => {
+            // @ts-ignore
+            window.AssistantHost?.closeKeyboard?.()
+        })
+        // @ts-ignore
         window.evg_assistant.on("data", (appData: any) => {
             // console.log("appData------ " + JSON.stringify(appData))
             setDebug((prev) => {
@@ -119,7 +124,7 @@ function App() {
             })
 
             if (appData?.smart_app_data?.commandParams?.params?.sendAlert) {
-               if (appData.smart_app_data.commandParams.params.sendAlert === true) {
+                if (appData.smart_app_data.commandParams.params.sendAlert === true) {
                     store.setSendAlert(appData.smart_app_data.commandParams.params.sendAlert);
                     store.setOpenAlertUserMsg(appData.smart_app_data.commandParams.params.alertTitle);
                     store.setOpenAlertUserSubMsg(appData.smart_app_data.commandParams.params.alertSubtitle);
@@ -129,7 +134,7 @@ function App() {
             if (appData?.smart_app_data?.commandParams?.params?.sendAppreciateChoice) {
                 if (appData.smart_app_data.commandParams.params.sendAppreciateChoice === true && store.isMobile) {
                     store.setIsCurtainThanks(appData.smart_app_data.commandParams.params.sendAppreciateChoice);
-                 }
+                }
             }
 
             if (appData?.smart_app_data?.commandParams?.screenName?.length > 0) {
@@ -152,7 +157,12 @@ function App() {
             if (appData?.smart_app_data?.commandParams?.params?.wish) {
                 store.setWish(appData.smart_app_data.commandParams.params.wish);
             }
-
+            if (appData?.smart_app_data?.commandParams?.params?.wishType) {
+                store.setWishType(appData.smart_app_data.commandParams.params.wishType);
+            }
+            if (appData?.smart_app_data?.commandParams?.params?.backButtonToExit) {
+                store.setBackButtonToExit(appData.smart_app_data.commandParams.params.backButtonToExit);
+            }
             if (appData?.smart_app_data?.commandParams?.params?.senderFio) {
                 store.setSenderFio(appData.smart_app_data.commandParams.params.senderFio);
             }
@@ -178,7 +188,10 @@ function App() {
                     store.setAlertUser(appData.smart_app_data.commandParams.params?.alertUser);
                     store.setOpenAlertUserMsg(appData.smart_app_data.commandParams.params?.alertTitle);
                     store.setOpenAlertUserSubMsg(appData.smart_app_data.commandParams.params?.alertSubtitle);
-                    store.cleanSelected();
+                    if (!appData.smart_app_data.commandParams.params?.selected) {
+                        store.cleanSelected();
+                    }
+
                 }
             }
         });

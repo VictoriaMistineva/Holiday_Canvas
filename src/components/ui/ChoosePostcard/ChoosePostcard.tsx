@@ -9,6 +9,7 @@ import {sendAE} from "../../../utils";
 import Curtain from "../Сurtain";
 
 const ChoosePostcard = () => {
+
     const onHandlerSelect = React.useCallback(() => {
         let index = store.activeRadioButton;
         sendAE("NEW_POSTCARD_CATEGORY", {index});
@@ -21,10 +22,11 @@ const ChoosePostcard = () => {
             sendAE("sendAppreciate", {});
         }
     },[store.isCurtainThanks])
-
+    
+    
     return(
         <>
-            <Curtain isOpen={store.isCurtain}>
+            <Curtain isOpen={store.isCurtain} isAutoClose={false}>
                 <div className='choosePostcard__title'>Хотите изменить категорию?</div>
                 <div className='choosePostcard__radioButtonWrapper'>
                     {(store.data as AppDataType)?.postcards?.map(({title}, index) => (
@@ -38,7 +40,7 @@ const ChoosePostcard = () => {
                 </div>
             </Curtain>
 
-            {store.isMobile && <Curtain isOpen={store.isCurtainThanks} >
+            {store.isMobile && <Curtain isOpen={store.isCurtainThanks} isAutoClose={false}>
                     <div className='choosePostcard__curtainThanks'  >
                         <div className='choosePostcard__curtainConteiner'onClick={()=>{store.setIsCurtainThanks(false);sendAE("sendCongratulation", {})}}>
                             <div className='choosePostcard__titleCurtain'>

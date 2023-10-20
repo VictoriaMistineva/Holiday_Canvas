@@ -3,11 +3,11 @@ import React from "react";
 import './CongratulationPage.scss'
 
 import Picture from "src/components/ui/Picture";
-import store, {CongratulationDataType} from 'src/store'
+import store, {CongratulationDataType, AppDataType} from 'src/store'
 import {observer} from "mobx-react";
 import Suggest from "src/components/ui/Suggest/Suggest";
 import {sendAE} from "../../utils";
-import {IconChevronLeft} from "@sberdevices/plasma-icons";
+import {IconChevronLeft,IconChevronDown} from "@sberdevices/plasma-icons";
 import Curtain from "src/components/ui/Сurtain";
 import { typography } from "@sberdevices/plasma-tokens";
 import CurtainAlert from "src/components/ui/СurtainAlert";
@@ -24,10 +24,16 @@ import CurtainAlert from "src/components/ui/СurtainAlert";
    *
    */
 
-const handleClickThacks = () =>{
+const handleClickThanks = () =>{
     sendAE("sendAppreciate", {});
     store.setIsCurtainThanks(true);
     store.setSaggestWebThanks(true);
+}
+
+const handleClickBACK= () =>{
+    sendAE("BACK", {})
+    store.cleanSelected()
+    console.log("store.backButtonToExit-- " + store.backButtonToExit )
 }
 
 const CongratulationPage = () => {
@@ -35,8 +41,8 @@ const CongratulationPage = () => {
         <div>
             <div className='congratulationPage__wrapper' >
                 <div className='congratulationPage' onClick={() => {store.setAlertUser(false);store.setIsCurtainThanks(false);store.setSendAlert(false)}}>
-                    <button className='congratulationPage__buttonBack' onClick={() => sendAE("BACK", {})}>
-                        <IconChevronLeft />
+                    <button className='congratulationPage__buttonBack' onClick={handleClickBACK}>
+                        {store.backButtonToExit ? <IconChevronDown/> : <IconChevronLeft />}
                     </button>
                     <Picture alt='letter' src='https://cntnt-ift.sberdevices.ru/ift-smartappide-ba/263/12381/o5gDZ6cNFLeXdecR.png' className='congratulationPage__letter' />
                     <div className='congratulationPage__whiteBlock'>
@@ -57,15 +63,15 @@ const CongratulationPage = () => {
                     <div className="saggestConteiner">
                         <Suggest title='Пожелать хорошего дня'
                                         onClick={() => sendAE("sendCongratulationGoodDay", {})}
-                                    >
+                        >
                         </Suggest >
                         <Suggest title='Поблагодарить'
-                                        onClick={() => handleClickThacks()}
+                                        onClick={() => handleClickThanks()}
                                     >
                         </Suggest >
                     </div>
                 };
-                {store.isSaggestWebThanks && !store.isMobile &&
+                {store.isSaggestWebThanks && !store.isMobile  && 
                     <div className="saggestConteiner">
                         <Suggest title='Отправить открытку'
                                         onClick={() => sendAE("sendCongratulation", {})}
@@ -79,7 +85,7 @@ const CongratulationPage = () => {
                 }
             </div>
             {store.isMobile &&
-                <Curtain isOpen={store.isOpenAlertUser}>
+                <Curtain isOpen={store.isOpenAlertUser} isAutoClose={true}>
                         <div className="sendAlertMobile__contentWrappers">
                             <img className="sendAlertMobile__icon" src="./icons/warning.svg" alt="none" />
                             <div style={typography.body1} className="sendAlertMobile__textContent">

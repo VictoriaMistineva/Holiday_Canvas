@@ -4,7 +4,7 @@ import './PopupContent.scss'
 
 import cn from 'classnames'
 
-import {IconChevronRight, IconMic} from "@sberdevices/plasma-icons";
+import {IconChevronRight, IconMic,IconChevronLeft} from "@sberdevices/plasma-icons";
 import Textarea from "src/components/ui/Textarea";
 import Search from "src/components/ui/Search";
 import {observer} from "mobx-react-lite";
@@ -89,7 +89,18 @@ const PopupContent: React.FC = () => {
     return(
         <div className='popupContent'>
             <div className='popupContent__title'>
-                {store.select.title}
+                {(store.select.multipleChoices || store.isMobile) &&
+                    <div
+                    className="popupContent__buttonBack" 
+                    onClick={() => {
+                        store.closeSelect()
+                        store.cleanSelected()
+                        sendAE("CANCEL__POPUP", {})
+                    }}>
+                        <IconChevronLeft />
+                    </div>
+                }
+                <div>{store.select.title}</div>
                 {false &&
                     <button className='popupContent__microfonWrapper'>
                         <IconMic className='popupContent__microfon' />

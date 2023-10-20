@@ -1,7 +1,7 @@
 import React from 'react';
 import './MainPage.scss';
 import {SingleCell, MultipleCell} from "src/components/ui/Cell";
-import {IconChevronLeft, IconChevronRight, IconMic} from "@sberdevices/plasma-icons";
+import {IconChevronLeft, IconChevronRight, IconMic, IconChevronDown} from "@sberdevices/plasma-icons";
 
 import { CONGRATULATE } from 'src/App';
 
@@ -14,6 +14,10 @@ import store, {MainType} from "src/store";
 import {getDate2} from "../../assets/scripts/Date";
 import CurtainAlert from "src/components/ui/СurtainAlert";
 
+const handleClickBACK = () =>{
+    sendAE("BACK", {})
+    store.cleanSelected()   
+}
 const MainPage: React.FC = () => {
     return(
         <div className='mainPage__mainPageWrapper' onClick={() => {store.setSendAlert(false)}}>
@@ -22,8 +26,8 @@ const MainPage: React.FC = () => {
             </div>}
             <div className='mainPage'>
                 <div className='mainPage__card'>
-                    <div className='mainPage__buttonBack' onClick={() => sendAE("BACK", {})}>
-                        <IconChevronLeft />
+                    <div className='mainPage__buttonBack' onClick={handleClickBACK}>
+                        {store.backButtonToExit ? <IconChevronDown/> : <IconChevronLeft />}
                         <div className='mainPage__buttonBackDescription'>
                             Праздники сегодня, {getDate2()}
                         </div>
@@ -32,6 +36,7 @@ const MainPage: React.FC = () => {
                         <div className='mainPage__cardsNumberWrapper'>1</div>
                         <div className='mainPage__cardsTitle'>Выберите событие — и мы вместе создадим открытку</div>
                     </div>
+                    
                     {(store.data as MainType).holiday && (
                         <div className='mainPage__cardContent mainPage__cardContent_holiday'>
                             <div className='mainPage__cardTitle' onClick={() => sendAE("OPEN_HOLIDAY", {})}>
@@ -91,7 +96,7 @@ const MainPage: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <CurtainAlert isOpen={store.isOpenSendAlert} title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg}></CurtainAlert>
+            <CurtainAlert isOpen={store.isOpenSendAlert} title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg} ></CurtainAlert>
         </div>
     )
 }
