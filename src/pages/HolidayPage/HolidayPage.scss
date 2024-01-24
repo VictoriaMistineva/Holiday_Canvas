@@ -22,7 +22,7 @@
   }
 
   &__buttonBack {
-    & > div {
+    &>div {
       width: 18px !important;
       height: 18px !important;
     }
@@ -47,7 +47,7 @@
       font: 600 16px/28px 'SB Sans Text', sans-serif;
     }
   }
-  
+
 
   &__title {
     margin-top: 68px;
@@ -76,9 +76,10 @@
 
     @include mq("md") {
       padding: 0 20px;
-      margin:0 0 11px;
+      margin: 0 0 11px;
       flex-direction: row-reverse;
-      & > div {
+
+      &>div {
         margin-left: 0;
         margin-right: auto;
       }
@@ -108,7 +109,7 @@
     }
   }
 
-  div > &__textarea {
+  div>&__textarea {
     --textarea-width: 308px;
     margin-top: 24px;
 
@@ -149,17 +150,19 @@
   }
 
   &__phonePicture {
-    width: 179px;
-    height: 356px;
+    // width: 179px;
+    // height: 356px;
   }
 
   &__lavasharPicture {
     position: absolute;
-    width: 163px;
-    height: 52px;
-    left: 8px;
-    bottom: 12px;
+    width: 175px;
+    height: 350px;
+    left: 2px;
+    top: 0px;
+    bottom: 0.1px;
     z-index: 1;
+    border-radius: 30px;
   }
 
   &__pictureSliderWrapper {
@@ -297,8 +300,8 @@
   }
 
   &__postcardMicrofon {
-      width: 18px !important;
-      height: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
   }
 
   &__send {
@@ -372,7 +375,7 @@
     &__pictureSlider-enter {
       opacity: 0;
     }
-    
+
     &__pictureSlider-enter-active {
       opacity: 1;
       transition: opacity 500ms ease-in;
@@ -386,7 +389,7 @@
       opacity: 0;
       transition: opacity 500ms ease-in;
     }
-    
+
 
     &__wrapper {
       position: absolute;
@@ -421,7 +424,7 @@
       width: 30px;
       height: 30px;
 
-      & > div {
+      &>div {
         width: 100% !important;
         height: 100% !important;
       }
@@ -450,18 +453,18 @@
       margin-bottom: 11px;
     }
 
-    &__cells {
-    }
+    &__cells {}
 
     &__changeSlide {
       width: calc(100% - 50px);
       background: rgba(255, 255, 255, 0.28);
-      backdrop-filter: blur(10px);
+
       border-radius: 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 26px 25px;
+      backdrop-filter: blur(10px);
 
       &_postcards {
         padding: 5px 25px;
@@ -525,7 +528,8 @@
       height: 287px;
       top: 0;
 
-      background: rgba(250, 109, 32, 0.1);;
+      background: rgba(250, 109, 32, 0.1);
+      ;
       filter: blur(71.5px);
 
       @include mq("md") {
@@ -578,4 +582,3 @@
     -webkit-text-fill-color: transparent;
   }
 }
-

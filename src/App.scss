@@ -82,7 +82,6 @@ button, input {
   --postcard-color: white;
   --semi-postcard-color: rgba(122, 122, 122, 0.28);
 
-  // background:  black url("https://cntnt-ift.sberdevices.ru/ift-smartappide-ba/263/12381/rZLvpY9jHm0PpMfR.png") no-repeat;
   background:  linear-gradient(26.05deg, rgba(15, 153, 24, 0.14) 0%, rgba(8, 8, 8, 0) 72.24%), radial-gradient(100% 100% at 0% 100%, rgba(0, 170, 255, 0.12) 0%, rgba(8, 8, 8, 0) 99.69%), radial-gradient(74.68% 149.35% at 50% 149.35%, rgba(0, 102, 255, 0.3) 0%, rgba(8, 8, 8, 0) 99.69%), black;
   background-size: 100% 100%;
   min-height: calc(100vh - 150px);
@@ -172,3 +171,18 @@ button, input {
   }
 }
 
+
+  .nativePanelBlur {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    // z-index: 999;
+    height: 110px;
+    width: 100%;
+    // box-sizing: border-box;
+    // display: flex;
+    backdrop-filter: blur(5px);
+    background: linear-gradient(#ffffff00, #000000);
+    // background: #24B23E;
+    position: fixed;
+  }

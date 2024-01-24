@@ -35,13 +35,13 @@ const PopupContent: React.FC = () => {
                                 newTitle = (
                                     <>
                                         <span>
-                                            {title.substring(0, title.search(search))}
+                                            {title.substring(0, title.toLowerCase().search(search.toLowerCase()) )}
                                         </span>
                                         <span className='popupContent__cardTitle_entered'>
-                                            {title.substring(title.search(search), title.search(search) + search.length)}
+                                            {title.substring(title.toLowerCase().search(search.toLowerCase()) , title.toLowerCase().search(search.toLowerCase())  + search.length)}
                                         </span>
                                         <span>
-                                            {title.substring(title.search(search) + search.length)}
+                                            {title.substring(title.toLowerCase().search(search.toLowerCase())  + search.length)}
                                         </span>
                                     </>
                                 )

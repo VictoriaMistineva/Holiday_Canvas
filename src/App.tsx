@@ -32,7 +32,7 @@ const initialize = (getState: any) => {
     if (process.env.REACT_APP_DEB === "t") {
         return createSmartappDebugger({
             token: process.env.REACT_APP_ASSISTANT_TOKEN || '1',
-            initPhrase: "запусти Coffee",
+            initPhrase: "запусти морковку",
             getState,
         });
     }
@@ -132,9 +132,9 @@ function App() {
             }
 
             if (appData?.smart_app_data?.commandParams?.params?.sendAppreciateChoice) {
-                if (appData.smart_app_data.commandParams.params.sendAppreciateChoice === true && store.isMobile) {
+                    console.log(appData.smart_app_data.commandParams.params.sendAppreciateChoice + "  sendAppreciateChoice")
                     store.setIsCurtainThanks(appData.smart_app_data.commandParams.params.sendAppreciateChoice);
-                }
+                
             }
 
             if (appData?.smart_app_data?.commandParams?.screenName?.length > 0) {
@@ -162,6 +162,9 @@ function App() {
             }
             if (appData?.smart_app_data?.commandParams?.params?.backButtonToExit) {
                 store.setBackButtonToExit(appData.smart_app_data.commandParams.params.backButtonToExit);
+            }
+            if (appData?.smart_app_data?.commandParams?.params?.senderFio) {
+                store.setSenderFio(appData.smart_app_data.commandParams.params.senderFio);
             }
             if (appData?.smart_app_data?.commandParams?.params?.senderFio) {
                 store.setSenderFio(appData.smart_app_data.commandParams.params.senderFio);
@@ -207,6 +210,8 @@ function App() {
     }
 
     return (
+        <>
+        {!store.isMobile && <div className='nativePanelBlur'></div>}
         <div
             className={cn(
                 "App",
@@ -219,6 +224,7 @@ function App() {
                     <Spinner className='App__spinner' />
                 ) : (
                     <>
+                        
                         {(!store.isMobile || (store.page === 'holidayConfigurator' && store.isMobile)) && <SoundControl />}
                         <button className="App__debug" onClick={toggleDebug}>Debug</button>
                         {!store.isMobile && store.page !== 'congratulation' && <div className='App__title'>{(store.data as AppDataType | CongratulationDataType | MainType).title}</div>}
@@ -246,6 +252,7 @@ function App() {
                 )
             }
         </div>
+        </>
     );
 }
 

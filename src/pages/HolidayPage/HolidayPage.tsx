@@ -5,10 +5,10 @@ import './Alert.css'
 
 import { typography } from "@sberdevices/plasma-tokens";
 
-import {MultipleCell, SingleCellCircleMic, WrapperCell, UsersCell} from "src/components/ui/Cell";
-import { IconChevronRight, IconChevronLeft, IconMic ,IconChevronDown} from "@sberdevices/plasma-icons";
+import { MultipleCell, SingleCellCircleMic, WrapperCell, UsersCell } from "src/components/ui/Cell";
+import { IconChevronRight, IconChevronLeft, IconMic, IconChevronDown } from "@sberdevices/plasma-icons";
 
-import store, {AppDataType, CongratulationDataType} from "src/store";
+import store, { AppDataType, CongratulationDataType } from "src/store";
 import { observer } from 'mobx-react-lite'
 
 import { CONGRATULATE } from 'src/App';
@@ -20,7 +20,7 @@ import Carusel from "src/components/ui/Carusel";
 import Textarea from "src/components/ui/Textarea/Textarea";
 import cn from "classnames";
 import { getDate } from "src/assets/scripts/Date";
-import {sendAE} from "src/utils";
+import { sendAE } from "src/utils";
 import useDetectKeyboardOpen from "use-detect-keyboard-open";
 
 
@@ -38,7 +38,7 @@ const HolidayPage: React.FC = () => {
     const [firstTab, setFirstTab] = React.useState<any>(null);
     const [secondTab, setSecondTab] = React.useState<any>(null);
     const [title, setTitle] = React.useState<string>('');
-    
+
     const sendCongratulation = React.useCallback(() => {
         store.send()
     }, [])
@@ -57,7 +57,7 @@ const HolidayPage: React.FC = () => {
     }, [(store.data as AppDataType).holidayType])
 
     React.useEffect(() => {
-        switch(true) {
+        switch (true) {
             case (store.selected.length === 1):
 
                 setFirstTab(
@@ -71,8 +71,8 @@ const HolidayPage: React.FC = () => {
                             store.cleanSelected()
                         }}
                         onClickMicrofon={() => sendAE("CLICK_RESETCHOOSE", {})}
-                        
-                    />   
+
+                    />
                 )
                 break
             case store.selected.length > 1:
@@ -85,7 +85,7 @@ const HolidayPage: React.FC = () => {
                         title='Список коллег'
                         description='изменить выбор'
                         elements={store.selected}
-                        onClickMicrofon={() => sendAE("CLICK_RESETCHOOSE", {})} 
+                        onClickMicrofon={() => sendAE("CLICK_RESETCHOOSE", {})}
                     />
                 )
                 break
@@ -121,15 +121,15 @@ const HolidayPage: React.FC = () => {
         return getDate().split(', ')[1];
     }, []);
 
-    const handleClickBACK = () =>{
+    const handleClickBACK = () => {
         sendAE("BACK", {})
         store.cleanSelected()
-        console.log("store.backButtonToExit-- " + store.backButtonToExit )
-        
+        console.log("store.backButtonToExit-- " + store.backButtonToExit)
+
     }
-    if(store.isMobile) {
+    if (store.isMobile) {
         return (
-            <div className='holidayPage' onClick={() => {store.setAlertUser(false); store.setSendAlert(false)}}>
+            <div className='holidayPage' onClick={() => { store.setAlertUser(false); store.setSendAlert(false) }}>
                 <Carusel
                     carouselPictures={(store.data as AppDataType)?.pictures}
                     activeItem={store.activeCaruselItem}
@@ -138,7 +138,7 @@ const HolidayPage: React.FC = () => {
                 <div className={isKeyboardOpen ? "holidayPage__wrapperScreen" : "holidayPage__wrapper"} >
                     <div className='holidayPage__header'>
                         <button className='holidayPage__buttonBack' onClick={handleClickBACK}>
-                            {store.backButtonToExit ? <IconChevronDown/> : <IconChevronLeft />}
+                            {store.backButtonToExit ? <IconChevronDown /> : <IconChevronLeft />}
                         </button>
                         {!store.isViewing && <div className='holidayPage__date'>{store.selected.length > 0 ? (store.data as AppDataType).title : `Сегодня ${date}`}</div>}
                     </div>
@@ -146,8 +146,8 @@ const HolidayPage: React.FC = () => {
                         <div className='holidayPage__viewingContent'>
                             <div className='holidayPage__viewingTitle'>
                                 {(store.data as AppDataType).holidayType !== 'BD' ?
-                                (store.data as AppDataType).title :
-                                'C ДНЕМ РОЖДЕНИЯ!'}
+                                    (store.data as AppDataType).title :
+                                    'C ДНЕМ РОЖДЕНИЯ!'}
                             </div>
                             {store.wish.map((title) => (
                                 <div className='holidayPage__viewingDescription'>{title}</div>
@@ -158,14 +158,14 @@ const HolidayPage: React.FC = () => {
                             {store.selected.length > 0 ? (
                                 <div>
                                     <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
-                                    Светлый шрифт
+                                        Светлый шрифт
                                     </Switch>
                                 </div>
 
                             ) : (
                                 <div className='holidayPage__headline'>{(store.data as AppDataType | CongratulationDataType).title}</div>
                             )}
-                            
+
                             <div className='holidayPage__content'>
                                 <div className='holidayPage__cells'>
                                     {firstTab}
@@ -195,12 +195,12 @@ const HolidayPage: React.FC = () => {
                                     </button>
                                 </div>
                                 <div className='holidayPage__wish' >
-                                    
+
                                     <WrapperCell
                                         onClickMicrofon={() => sendAE("VOISE_WISH", {})}
                                         title='Добавить к открытке пожелание'
                                         className='holidayPage__multipleCellAdd holidayPage__multipleCellAdd_input'
-                                        
+
                                     >
                                         <Textarea isMobile={store.isMobile} value={store.wish} className='holidayPage__textarea' onChange={store.setWish} />
                                     </WrapperCell>
@@ -216,14 +216,16 @@ const HolidayPage: React.FC = () => {
                                 {!store.isViewing ? (
                                     <Suggest title='К просмотру' onClick={() => {
                                         store.setIsViewing(true)
-                                        sendAE("SUGGEST_TO_VIEW", {})}
+                                        sendAE("SUGGEST_TO_VIEW", {})
+                                    }
                                     } />
                                 ) : (
                                     <>
                                         <Suggest title='Изменить' onClick={() => {
-                                            store.setIsViewing(false) 
-                                            sendAE("SUGGEST_CHANGE", {})}} />
-                                        <Suggest title='Отправить' onClick={store.send} />  
+                                            store.setIsViewing(false)
+                                            sendAE("SUGGEST_CHANGE", {})
+                                        }} />
+                                        <Suggest title='Отправить' onClick={store.send} />
                                     </>
                                 )}
                             </div>
@@ -236,9 +238,9 @@ const HolidayPage: React.FC = () => {
                         <div style={typography.body1} className="sendAlertMobile__textContent">
                             {store.openAlertUserMsg}
                         </div>
-                            <div style={typography.body1} className="sendAlertMobile__subtitle">
-                                {store.openAlertUserSubMsg}
-                            </div>
+                        <div style={typography.body1} className="sendAlertMobile__subtitle">
+                            {store.openAlertUserSubMsg}
+                        </div>
                     </div>
                 </Curtain>
                 <CurtainAlert isOpen={store.isOpenSendAlert} title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg}></CurtainAlert>
@@ -246,16 +248,16 @@ const HolidayPage: React.FC = () => {
         )
     }
 
-    return(
-        <div className='holidayPage' onClick={() => {store.setAlertUser(false);store.setSendAlert(false)}}>
+    return (
+        <div className='holidayPage' onClick={() => { store.setAlertUser(false); store.setSendAlert(false) }}>
             <div className='holidayPage__title'>{title}</div>
             <div className='holidayPage__configurator'>
                 <div>
-                    <div> 
+                    <div>
                         <Switch onChange={store.switchColor} isChecked={(store.data as AppDataType).color === 'white'} className='holidayPage__switch'>
                             Светлый шрифт
                         </Switch>
-                    </div>    
+                    </div>
                     {firstTab}
                 </div>
                 <div className='holidayPage__pictureWrapper'>
@@ -263,12 +265,12 @@ const HolidayPage: React.FC = () => {
                         <IconChevronLeft />
                     </button>
                     <div className='holidayPage__phonePictureWrapper'>
-                        <Picture className='holidayPage__phonePicture' src='https://cntnt-ift.sberdevices.ru/ift-smartappide-ba/263/12381/G0PCj1ZqOzWGikUo.png' alt='phone' />
-                        <Picture className='holidayPage__lavasharPicture' src='https://cntnt-ift.sberdevices.ru/ift-smartappide-ba/263/12381/nDFs6zNjPGiGV3O5.png' alt='phone' />
+                        <Picture className='holidayPage__phonePicture' src='https://content.sberdevices.ru/smartmarket-smide-prod/258851/606230/f0blnppONTwBoR4n.png' alt='phone1' />
+                        <Picture className='holidayPage__lavasharPicture' src='https://content.sberdevices.ru/smartmarket-smide-prod/258851/606230/I8ApV3IrReW8w2ys.png' alt='маска' />
                         <div className='holidayPage__pictureSliderWrapper'>
                             {(store.data as AppDataType)?.pictures?.length > 0 &&
-                            <Carusel activeItem={store.activeCaruselItem} setActiveItem={store.setActiveCaruselItem}
-                                     carouselPictures={(store.data as AppDataType).pictures} />
+                                <Carusel activeItem={store.activeCaruselItem} setActiveItem={store.setActiveCaruselItem}
+                                    carouselPictures={(store.data as AppDataType).pictures} />
                             }
                         </div>
                         <div className='holidayPage__pictureContentWrapper'>
@@ -299,8 +301,8 @@ const HolidayPage: React.FC = () => {
                     <>
                         <div className='holidayPage__postcardsTitle'>Категории открыток</div>
                         <div className='holidayPage__postcards'>
-                            {(store.data as AppDataType)?.postcards.map(({src, title}, index) => (
-                                <button key={index + title} className='holidayPage__postcard' onClick={() => sendAE("NEW_POSTCARD_CATEGORY", {index})}>
+                            {(store.data as AppDataType)?.postcards.map(({ src, title }, index) => (
+                                <button key={index + title} className='holidayPage__postcard' onClick={() => sendAE("NEW_POSTCARD_CATEGORY", { index })}>
                                     <Picture className='holidayPage__postcardPicture' src={src} alt={title} />
                                     <div className='holidayPage__postcardContent'>
                                         <div className='holidayPage__postcardTitle'>{title}</div>
@@ -321,7 +323,7 @@ const HolidayPage: React.FC = () => {
             >
                 Отправить
             </div>
-            
+
             <Curtain isOpen={store.isOpenAlertUser} isAutoClose={true} > <SendAlert title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg} /> </Curtain>
             <CurtainAlert isOpen={store.isOpenSendAlert} title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg}></CurtainAlert>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import './Сurtain.scss'
-
+import store, {CongratulationDataType, AppDataType} from '../../../store'
 import cn from 'classnames';
 
 export type CurtainProps = {
@@ -16,7 +16,6 @@ const Curtain: React.FC<CurtainProps> = (
         children,
         isAutoClose,
     }) => {
-
      // Добавляем состояние для отслеживания времени открытия
      const [timeIsOpen, setTimeIsOpen] = React.useState<boolean>(true);
 
@@ -25,6 +24,7 @@ const Curtain: React.FC<CurtainProps> = (
             console.log("isAutoClose" + isAutoClose)
              const timer = setTimeout(() => {
                  setTimeIsOpen(false);
+                 store.setAlertUser(false)
              }, 5000);
  
              return () => {

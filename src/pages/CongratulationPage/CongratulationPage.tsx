@@ -11,6 +11,7 @@ import {IconChevronLeft,IconChevronDown} from "@sberdevices/plasma-icons";
 import Curtain from "src/components/ui/Сurtain";
 import { typography } from "@sberdevices/plasma-tokens";
 import CurtainAlert from "src/components/ui/СurtainAlert";
+import SendAlert from "../SendAlert";
 
 /**
    * Returns the average of two numbers.
@@ -37,14 +38,15 @@ const handleClickBACK= () =>{
 }
 
 const CongratulationPage = () => {
+    {console.log(store.isCurtainThanks  + "store.isCurtainThanks ")}
     return(
-        <div>
+        <div onClick={() => {store.setAlertUser(false);store.setIsCurtainThanks(false);store.setSendAlert(false)}}>
             <div className='congratulationPage__wrapper' >
-                <div className='congratulationPage' onClick={() => {store.setAlertUser(false);store.setIsCurtainThanks(false);store.setSendAlert(false)}}>
+                <div className='congratulationPage'>
                     <button className='congratulationPage__buttonBack' onClick={handleClickBACK}>
                         {store.backButtonToExit ? <IconChevronDown/> : <IconChevronLeft />}
                     </button>
-                    <Picture alt='letter' src='https://cntnt-ift.sberdevices.ru/ift-smartappide-ba/263/12381/o5gDZ6cNFLeXdecR.png' className='congratulationPage__letter' />
+                    <Picture alt='letter' src='https://content.sberdevices.ru/smartmarket-smide-prod/258851/606230/E7anAznyPqwNbSn2.png' className='congratulationPage__letter' />
                     <div className='congratulationPage__whiteBlock'>
                         <Picture alt='picture' src={(store.data as CongratulationDataType).picture} className='congratulationPage__picture' />
                         <div className='congratulationPage__pictureContent'>
@@ -59,7 +61,7 @@ const CongratulationPage = () => {
                     </div>
                     
                 </div>
-                {(!store.isSaggestWebThanks || store.isMobile ) && 
+                {(!store.isSaggestWebThanks || store.isMobile ) && !store.isCurtainThanks && 
                     <div className="saggestConteiner">
                         <Suggest title='Пожелать хорошего дня'
                                         onClick={() => sendAE("sendCongratulationGoodDay", {})}
@@ -71,7 +73,7 @@ const CongratulationPage = () => {
                         </Suggest >
                     </div>
                 };
-                {store.isSaggestWebThanks && !store.isMobile  && 
+                {(store.isSaggestWebThanks || store.isCurtainThanks  ) && !store.isMobile  && 
                     <div className="saggestConteiner">
                         <Suggest title='Отправить открытку'
                                         onClick={() => sendAE("sendCongratulation", {})}
@@ -84,6 +86,7 @@ const CongratulationPage = () => {
                     </div>
                 }
             </div>
+            
             {store.isMobile &&
                 <Curtain isOpen={store.isOpenAlertUser} isAutoClose={true}>
                         <div className="sendAlertMobile__contentWrappers">
@@ -93,11 +96,14 @@ const CongratulationPage = () => {
                             </div>
                                 <div style={typography.body1} className="sendAlertMobile__subtitle">
                                     {store.openAlertUserSubMsg}
+                                    
                                 </div>
                         </div>
                 </Curtain>
             }
             <CurtainAlert isOpen={store.isOpenSendAlert} title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg}></CurtainAlert>
+            
+            <Curtain isOpen={store.isOpenAlertUser} isAutoClose={true} > <SendAlert title={store.openAlertUserMsg} subtitle={store.openAlertUserSubMsg} /> </Curtain>
         </div>
     )
 }

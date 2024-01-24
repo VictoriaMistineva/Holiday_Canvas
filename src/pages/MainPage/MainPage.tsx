@@ -92,7 +92,7 @@ const MainPage: React.FC = () => {
                         <div className='mainPage__cardsTitle'>Адресат получит push-уведомление и перейдет к открытке в мобильном приложении</div>
                     </div>
                     <div className='mainPage__cardPicture'>
-                        <Picture src='https://cntnt-ift.sberdevices.ru/ift-smartappide-ba/263/12381/1mRiwQmG0nYUTzpL.png' alt='phones' />
+                        <Picture src='https://content.sberdevices.ru/smartmarket-smide-prod/258851/606230/WviM3uKqDDohiT5Z.png' alt='phones' />
                     </div>
                 </div>
             </div>
