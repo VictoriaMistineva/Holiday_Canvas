@@ -38,7 +38,6 @@ const handleClickBACK= () =>{
 }
 
 const CongratulationPage = () => {
-    {console.log(store.isCurtainThanks  + "store.isCurtainThanks ")}
     return(
         <div onClick={() => {store.setAlertUser(false);store.setIsCurtainThanks(false);store.setSendAlert(false)}}>
             <div className='congratulationPage__wrapper' >
@@ -57,7 +56,7 @@ const CongratulationPage = () => {
                                 ))}
                             </div>
                         </div>
-                        <div className='congratulationPage__sender'>{(store.data as CongratulationDataType).sender}</div>
+                        {(store.data as CongratulationDataType).sender !== "" && <div className='congratulationPage__sender'>{(store.data as CongratulationDataType).sender}</div>}
                     </div>
                     
                 </div>

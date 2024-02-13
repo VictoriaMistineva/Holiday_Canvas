@@ -370,6 +370,19 @@
       margin-left: auto;
     }
   }
+  &__checkboxContainerMobile{
+    display: none;
+
+    @include mq("md") {
+      position: absolute;
+      display: inline-block;
+      align-self: flex-start;
+      bottom: 160px;
+      right: 20px;
+      margin-left: auto;
+    }
+
+  }
 
   @include mq("md") {
     &__pictureSlider-enter {
@@ -505,6 +518,26 @@
       }
     }
   }
+  &__checkboxContainer{
+    padding-top: 20px;
+    padding-right: 50px;
+    div:nth-child(1){
+      width: 2.25rem;
+      height: 2.25rem;
+      flex: 0 0 2.25rem;
+      // margin-right: 1rem;
+    }
+    span{
+      
+      font-family: "SB Sans Text";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 28px;
+      letter-spacing: -0.022em;
+    }
+
+  }
 }
 
 .sendAlertMobile {
@@ -581,4 +614,5 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  
 }

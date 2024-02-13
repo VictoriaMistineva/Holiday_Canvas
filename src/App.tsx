@@ -132,7 +132,7 @@ function App() {
             }
 
             if (appData?.smart_app_data?.commandParams?.params?.sendAppreciateChoice) {
-                    console.log(appData.smart_app_data.commandParams.params.sendAppreciateChoice + "  sendAppreciateChoice")
+                    // console.log(appData.smart_app_data.commandParams.params.sendAppreciateChoice + "  sendAppreciateChoice")
                     store.setIsCurtainThanks(appData.smart_app_data.commandParams.params.sendAppreciateChoice);
                 
             }
@@ -185,7 +185,12 @@ function App() {
             if (appData?.smart_app_data?.commandParams?.params?.toSend) {
                 store.send();
             }
-
+            // console.log(appData?.smart_app_data?.commandParams?.params?.checkboxAccess)
+            if (appData?.smart_app_data?.commandParams?.params?.checkboxAccess === undefined || appData?.smart_app_data?.commandParams?.params?.checkboxAccess !== undefined )
+            {
+                // console.log("checkboxAccess ---")
+                store.setCheckboxAccess(appData?.smart_app_data?.commandParams.params.checkboxAccess)
+            }
             if (appData?.smart_app_data?.commandParams?.params?.alertUser) {
                 if (appData.smart_app_data.commandParams.params?.alertUser === true) {
                     store.setAlertUser(appData.smart_app_data.commandParams.params?.alertUser);

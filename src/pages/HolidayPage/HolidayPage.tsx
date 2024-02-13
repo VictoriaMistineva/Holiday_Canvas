@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import './HolidayPage.scss';
 import './Alert.css'
 
-
+import { Checkbox } from '@salutejs/plasma-ui';
 import { typography } from "@sberdevices/plasma-tokens";
 
 import { MultipleCell, SingleCellCircleMic, WrapperCell, UsersCell } from "src/components/ui/Cell";
@@ -31,13 +31,14 @@ import SendAlert from "src/pages/SendAlert"
 import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 import Suggest from "src/components/ui/Suggest/Suggest";
 import SendReportPage from '../SendReportPage';
-import { Underline } from '@sberdevices/plasma-ui';
+import { Underline, h5 } from '@sberdevices/plasma-ui';
 
 const HolidayPage: React.FC = () => {
     const isKeyboardOpen = useDetectKeyboardOpen();
     const [firstTab, setFirstTab] = React.useState<any>(null);
     const [secondTab, setSecondTab] = React.useState<any>(null);
     const [title, setTitle] = React.useState<string>('');
+    const [accessCheckBox, SetAccessCheckBox] = React.useState<boolean>(false);
 
     const sendCongratulation = React.useCallback(() => {
         store.send()
@@ -127,6 +128,24 @@ const HolidayPage: React.FC = () => {
         console.log("store.backButtonToExit-- " + store.backButtonToExit)
 
     }
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.checked);
+        let checkboxAccess = store.checkboxAccess;
+        //почему-то на сценарку не приходил false
+        
+        if(checkboxAccess === undefined){
+            let parameters = event.target.checked ? true: false;
+            SetAccessCheckBox(parameters);
+            sendAE("checkboxAccess", { event: parameters , error:"undefined checkboxAccess"})
+        }
+        else{
+            SetAccessCheckBox(!checkboxAccess);
+            sendAE("checkboxAccess", { event: !checkboxAccess })
+        }
+        console.log("checkboxAccess^^ " + !checkboxAccess)
+        
+    };
+
     if (store.isMobile) {
         return (
             <div className='holidayPage' onClick={() => { store.setAlertUser(false); store.setSendAlert(false) }}>
@@ -210,7 +229,30 @@ const HolidayPage: React.FC = () => {
                     )}
                     {store.selected.length > 0 && (
                         <>
-                            {store.isViewing && store.senderFio && <div className='holidayPage__sender'>{store.senderFio}</div>}
+                            {/* {<h5>Молодец!у тебя новая версия. текс вне логики чекбокса</h5>}
+                            {<div>{store.checkboxAccess + " ------store.checkboxAccess"}</div>}
+                            {<div>{store.isViewing + "  --store.isViewing"}</div>} */}
+                            
+                            {store.checkboxAccess !== true && store.isViewing && store.senderFio && <div className='holidayPage__sender' style={((store.checkboxAccess !== undefined) || (store.data as AppDataType | CongratulationDataType).title === "День всех влюбленных")? { bottom: "220px" } : {}}>{store.senderFio}</div>}
+                            {/* {store.isViewing && store.checkboxAccess !== true  && <div className='holidayPage__sender' style={ store.checkboxAccess !== undefined ? { bottom: "220px" } : {}}></div>} */}
+
+                            {(store.checkboxAccess !== undefined || (store.data as AppDataType | CongratulationDataType).title === "День всех влюбленных") && store.isViewing &&
+                                <>
+                                    <div className="holidayPage__checkboxContainerMobile">
+                                        <Checkbox
+
+                                            label={
+                                                <div>
+                                                    Анонимно
+                                                </div>
+                                            }
+                                            checked={accessCheckBox}
+                                            onChange={(event: ChangeEvent<HTMLInputElement>) => { handleChange(event) }}
+                                        />
+                                    </div>
+                                    {/* <div>текст внутри логики чекбока</div> */}
+                                </>
+                            }
                             <div className='holidayPage__suggest'>
 
                                 {!store.isViewing ? (
@@ -259,6 +301,20 @@ const HolidayPage: React.FC = () => {
                         </Switch>
                     </div>
                     {firstTab}
+                    {(store.checkboxAccess !== undefined) &&
+                        <div className="holidayPage__checkboxContainer">
+                            <Checkbox
+
+                                label={
+                                    <div>
+                                        Анонимно
+                                    </div>
+                                }
+                                checked={store.checkboxAccess ? store.checkboxAccess : false}
+                                onChange={(event: ChangeEvent<HTMLInputElement>) => { handleChange(event) }}
+                            />
+                        </div>
+                    }
                 </div>
                 <div className='holidayPage__pictureWrapper'>
                     <button className='holidayPage__pictureIcon' onClick={() => store.setActiveCaruselItem(store.activeCaruselItem - 1)}>

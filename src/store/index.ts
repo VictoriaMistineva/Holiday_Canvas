@@ -94,7 +94,7 @@ class Store {
         volume: false,
     }
     activeRadioButton: number = 0;
-
+    checkboxAccess : boolean|undefined = undefined;
     constructor() {
         makeAutoObservable(this);
     }
@@ -102,7 +102,10 @@ class Store {
     setPage = (newPage: string) => {
         this.page = newPage;
     }
-
+    setCheckboxAccess = (checkboxAccess: boolean|undefined ) =>
+    {
+        this.checkboxAccess = checkboxAccess;
+    }
     setData = (newData: AppDataType | CongratulationDataType | SendReportType | MainType) => {
         this.data = newData;
     }
